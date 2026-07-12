@@ -31,6 +31,18 @@ see `docs/QUALITY_FINDINGS.md` for the full quality assessment):**
 - Full data dictionaries: [docs/data_dictionary_311.md](docs/data_dictionary_311.md),
   [docs/data_dictionary_weather.md](docs/data_dictionary_weather.md).
 
+**Cleaned & joined (`04_integrate.ipynb`, see `docs/QUALITY_FINDINGS.md` for the decisions this
+acts on):** `data/processed/analysis_daily.csv` — one row per (date, category), 1,143 rows,
+LEFT-JOINed with weather by date. Validated: row count unchanged by the join, `n_requests` sum
+equals the cleaned 311 event count (1,223,457) exactly, 100% of the 121 dates have complete
+weather, spot-checked against the known biggest in-window snow day. Dictionary:
+[docs/data_dictionary_analysis_daily.md](docs/data_dictionary_analysis_daily.md).
+
+Note: `data/processed/311_clean.csv` (the row-level cleaned 311 table, ~248 MB) is gitignored —
+too large for GitHub's per-file limit, and fully regenerable by re-running `04_integrate.ipynb`
+against the frozen raw files. `weather_clean.csv` and `analysis_daily.csv` are small (both well
+under 100 KB) and are committed as-is.
+
 ## Folder structure
 
 ```
@@ -57,6 +69,7 @@ nyc311-weather/
 │   ├── QUALITY_FINDINGS.md
 │   ├── data_dictionary_311.md
 │   ├── data_dictionary_weather.md
+│   ├── data_dictionary_analysis_daily.md
 │   └── FAIR_and_provenance.md
 ├── figures/                        # exported plots (fig_01_....png)
 └── presentation/                   # slides source + final PDF
