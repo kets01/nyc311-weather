@@ -92,15 +92,15 @@ nyc311-weather/
 
 All in **`03_quality.ipynb`**, one section per dimension, every finding as a NUMBER. Then summarize in `docs/QUALITY_FINDINGS.md` as a table: *dimension | finding | number | my decision*.
 
-- [ ] **3.1 Completeness.** `df.isna().mean()`; ALSO count disguised missing values ("Unspecified" borough, ZIP "00000"/"N/A"); `missingno.matrix`; missing weather days count. *Decision:* report, don't invent data; missing `Closed Date` on open cases is legitimate.
-- [ ] **3.2 Consistency.** `Agency` vs `Agency Name` cross-tab; borough value list (spelling variants?); whitespace/case in complaint types before vs after normalizing.
-- [ ] **3.3 Validity.** ZIP regex `^\d{5}$` pass rate; coordinates inside NYC box (lat 40.4–41.0, lon −74.3…−73.6); dates inside your window; TMAX in −30…45 °C, PRCP ≥ 0.
-- [ ] **3.4 Accuracy.** Pick 2–3 extreme weather days in your window, check them against a weather website/news → note agreement. Say why real accuracy is hard without ground truth.
-- [ ] **3.5 Timeliness.** Your download date vs portal "last updated"; histogram of `Closed − Created`; note that NOAA corrects values retroactively → "data as of <date>".
-- [ ] **3.6 Uniqueness.** Exact duplicate `Unique Key` count; small heuristic for semantic duplicates (same day + type + ZIP, count multi-report incidents). *Decision:* remove exact dupes; keep semantic ones deliberately (unit = reports) — write that decision down.
-- [ ] **3.7 Integrity.** Count `Closed Date < Created Date` rows; check every complaint type maps into your table (0 unmapped).
-- [ ] **3.8 Representativeness.** Complaints per borough vs borough population (5 numbers from Wikipedia/census, cite them); one sentence on the single-weather-station limitation.
-- [ ] **3.9 Write `docs/QUALITY_FINDINGS.md`** with the summary table + 2 screenshots (missingno, profiling report). *Time for the phase:* ~6–8 h total. *Watch out:* don't fix anything in this notebook — assessing and cleaning are separate steps (that separation itself is a good exam point).
+- [x] **3.1 Completeness.** `df.isna().mean()`; ALSO count disguised missing values ("Unspecified" borough, ZIP "00000"/"N/A"); `missingno.matrix`; missing weather days count. *Decision:* report, don't invent data; missing `Closed Date` on open cases is legitimate.
+- [x] **3.2 Consistency.** `Agency` vs `Agency Name` cross-tab; borough value list (spelling variants?); whitespace/case in complaint types before vs after normalizing.
+- [x] **3.3 Validity.** ZIP regex `^\d{5}$` pass rate; coordinates inside NYC box (lat 40.4–41.0, lon −74.3…−73.6); dates inside your window; TMAX in −30…45 °C, PRCP ≥ 0.
+- [x] **3.4 Accuracy.** Pick 2–3 extreme weather days in your window, check them against a weather website/news → note agreement. Say why real accuracy is hard without ground truth.
+- [x] **3.5 Timeliness.** Your download date vs portal "last updated"; histogram of `Closed − Created`; note that NOAA corrects values retroactively → "data as of <date>".
+- [x] **3.6 Uniqueness.** Exact duplicate `Unique Key` count; small heuristic for semantic duplicates (same day + type + ZIP, count multi-report incidents). *Decision:* remove exact dupes; keep semantic ones deliberately (unit = reports) — write that decision down.
+- [x] **3.7 Integrity.** Count `Closed Date < Created Date` rows; check every complaint type maps into your table (0 unmapped).
+- [x] **3.8 Representativeness.** Complaints per borough vs borough population (5 numbers from Wikipedia/census, cite them); one sentence on the single-weather-station limitation.
+- [x] **3.9 Write `docs/QUALITY_FINDINGS.md`** with the summary table + 2 screenshots (missingno, profiling report). *Time for the phase:* ~6–8 h total. *Watch out:* don't fix anything in this notebook — assessing and cleaning are separate steps (that separation itself is a good exam point).
 
 ---
 
