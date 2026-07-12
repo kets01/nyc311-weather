@@ -40,19 +40,19 @@ nyc311-weather/
 
 # PHASE 0 — Setup (½ day)
 
-- [ ] **0.1 Create the folder structure** exactly as above. *Why:* every file gets one obvious home. *Deliverable:* the tree. *Time:* 10 min.
-- [ ] **0.2 Git init.** `git init`, create `.gitignore` containing `data/raw/`, `.ipynb_checkpoints/`, `__pycache__/`; first commit. Optional: private GitHub repo as extra backup. *Why:* version history = provenance of your work; you can show `git log` in the exam. *Time:* 15 min. *Watch out:* never commit the big raw CSV.
-- [ ] **0.3 Python environment.** Create a venv (or conda env), then `pip install pandas jupyter matplotlib seaborn missingno ydata-profiling holidays` and `pip freeze > requirements.txt`; also note your **Python version** (`python --version`) in the README — requirements.txt doesn't capture it, and it matters just as much. Commit. *Why:* pinned versions + Python version = your environment spec; environments are the most fragile part of long-term reproducibility. *Time:* 20 min.
-- [ ] **0.4 Start README.** Title, research question, data sources with links + licenses, folder guide. *Why:* first thing anyone (including the examiner) reads. *Time:* 20 min.
-- [ ] **0.5 Set up backup.** Decide your 3 copies: laptop + USB/external drive + cloud folder. Copy the project once now; open one file from the copy to prove restore works. Note this in `docs/DMP.md`. *Why:* the DMP backup section must describe something real. *Time:* 20 min.
-- [ ] **0.6 Create doc stubs.** Empty `DMP.md`, `QUALITY_FINDINGS.md`, `FAIR_and_provenance.md` with headings copied from CONTEXT.md. *Why:* you'll fill them phase by phase instead of the night before. *Time:* 15 min.
+- [x] **0.1 Create the folder structure** exactly as above. *Why:* every file gets one obvious home. *Deliverable:* the tree. *Time:* 10 min.
+- [x] **0.2 Git init.** `git init`, create `.gitignore` containing `data/raw/`, `.ipynb_checkpoints/`, `__pycache__/`; first commit. Optional: private GitHub repo as extra backup. *Why:* version history = provenance of your work; you can show `git log` in the exam. *Time:* 15 min. *Watch out:* never commit the big raw CSV.
+- [x] **0.3 Python environment.** Create a venv (or conda env), then `pip install pandas jupyter matplotlib seaborn missingno ydata-profiling holidays` and `pip freeze > requirements.txt`; also note your **Python version** (`python --version`) in the README — requirements.txt doesn't capture it, and it matters just as much. Commit. *Why:* pinned versions + Python version = your environment spec; environments are the most fragile part of long-term reproducibility. *Time:* 20 min.
+- [x] **0.4 Start README.** Title, research question, data sources with links + licenses, folder guide. *Why:* first thing anyone (including the examiner) reads. *Time:* 20 min.
+- [ ] **0.5 Set up backup.** Decide your 3 copies: laptop + USB/external drive + cloud folder. Copy the project once now; open one file from the copy to prove restore works. Note this in `docs/DMP.md`. *Why:* the DMP backup section must describe something real. *Time:* 20 min. **Status: 2/3 done** — laptop + GitHub remote (`github.com/kets01/nyc311-weather`) are live; USB/external-drive copy still outstanding (see `docs/DMP.md`).
+- [x] **0.6 Create doc stubs.** Empty `DMP.md`, `QUALITY_FINDINGS.md`, `FAIR_and_provenance.md` with headings copied from CONTEXT.md. *Why:* you'll fill them phase by phase instead of the night before. *Time:* 15 min.
 
 ---
 
 # PHASE 1 — Download the data via the APIs (½ day)
 
-- [ ] **1.1 Choose your subset and write it down.** Recommended: **Jan–Feb 2025 + Jul–Aug 2025** (winter vs. summer = weather contrast, and small enough for a laptop). Write one sentence in the README: "I chose … because …". *Why:* subsets are allowed, but must be deliberate. *Time:* 10 min.
-- [ ] **1.2 Create `00_download.ipynb` and fetch the 311 data (Socrata SODA API).** No key needed. One cell per time window — the whole download is:
+- [x] **1.1 Choose your subset and write it down.** Recommended: **Jan–Feb 2025 + Jul–Aug 2025** (winter vs. summer = weather contrast, and small enough for a laptop). Write one sentence in the README: "I chose … because …". *Why:* subsets are allowed, but must be deliberate. *Time:* 10 min.
+- [x] **1.2 Create `00_download.ipynb` and fetch the 311 data (Socrata SODA API).** No key needed. One cell per time window — the whole download is:
   ```python
   import pandas as pd, urllib.parse
   where = "created_date between '2025-01-01T00:00:00' and '2025-02-28T23:59:59'"
@@ -63,7 +63,7 @@ nyc311-weather/
   df.to_csv("../data/raw/311_2025-01_2025-02_downloaded_2026-07-15.csv", index=False)
   ```
   Repeat for the summer window. *Watch out:* **always print the row count and check it's below your `$limit`** — if it equals the limit, the download was truncated and you must raise the limit or split the window. Also verify min/max dates match your window. *Why:* the URL in code = reproducible acquisition; server-side filtering means you only download your subset. *Time:* 45 min.
-- [ ] **1.3 Fetch the weather data (NOAA NCEI Access API, same notebook).** No token needed:
+- [x] **1.3 Fetch the weather data (NOAA NCEI Access API, same notebook).** No token needed:
   ```python
   url = ("https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries"
          "&stations=USW00094728&startDate=2025-01-01&endDate=2025-08-31"
@@ -73,18 +73,18 @@ nyc311-weather/
   wx.to_csv("../data/raw/weather_centralpark_2025_downloaded_2026-07-15.csv", index=False)
   ```
   *Watch out:* keep `units=metric` in the URL — that's your explicit, documented answer to the units trap. Expect ~1 row per day; sanity-check TMAX values look like °C. *Time:* 20 min.
-- [ ] **1.4 Fill in `data/DOWNLOAD_LOG.md`.** For each file: the full API URL, download date, file size, number of rows. *Why:* the notebook reproduces the *query*; the log pins down the *snapshot* — both sources revise data retroactively, so "data as of <date>" needs a record. *Time:* 10 min.
-- [ ] **1.5 Freeze the raw data.** Rule: nothing ever edits `data/raw/`. Optional but nice: run `shasum -a 256` (Mac/Linux) or `certutil -hashfile file SHA256` (Windows) on each file and paste the checksums into the download log. Back up now. *Time:* 10 min.
+- [x] **1.4 Fill in `data/DOWNLOAD_LOG.md`.** For each file: the full API URL, download date, file size, number of rows. *Why:* the notebook reproduces the *query*; the log pins down the *snapshot* — both sources revise data retroactively, so "data as of <date>" needs a record. *Time:* 10 min.
+- [x] **1.5 Freeze the raw data.** SHA-256 checksums recorded in the log; USB backup still pending (see 0.5). Rule: nothing ever edits `data/raw/`. Optional but nice: run `shasum -a 256` (Mac/Linux) or `certutil -hashfile file SHA256` (Windows) on each file and paste the checksums into the download log. Back up now. *Time:* 10 min.
 
 ---
 
 # PHASE 2 — Explore & describe (1–1.5 days)
 
-- [ ] **2.1 Notebook `01_explore_311.ipynb`.** Habit for THIS and every notebook: first cell prints `sys.version` and `pd.__version__` (self-documenting provenance). Then load the CSV (use `pd.read_csv(..., low_memory=False)`); print shape, date min/max, missing % per column, top 30 complaint types, borough counts, duplicated `Unique Key` count. Run `ydata_profiling.ProfileReport(df.sample(100000))` and save the HTML into `docs/`. *Why:* the profiling report is a show-piece for "what tools do you use?". *Watch out:* compute missing % on the FULL data, not just the sample. *Time:* 2–3 h.
-- [ ] **2.2 Notebook `02_explore_weather.ipynb`.** Load weather CSV; plot TMAX/TMIN/PRCP/SNOW over time; **sanity-check units** (NYC TMAX ≈ −15…40 °C — if you see 250, it's tenths!); list missing days by comparing against a full calendar (`pd.date_range`). *Time:* 1 h.
-- [ ] **2.3 Write the data dictionaries.** In `docs/data_dictionary_311.md` (only the ~10 columns you actually use, one line each: name, type, unit, meaning, example, missing-behavior) and same for weather. *Why:* this answers the exam's "How do you describe the dataset?" — it's structural metadata. *Time:* 1 h.
-- [ ] **2.4 Build the category mapping table.** Create `data/complaint_category_map.csv` with two columns (`raw_type`, `category`): map the top complaint types to ~8–10 groups (HEAT, NOISE, FLOODING, SNOW_ICE, STREET, SANITATION, PARKING, …) and everything else to OTHER. Commit it. *Why:* this is your self-made **controlled vocabulary** — one of the best things you can show. *Watch out:* always keep an OTHER bucket so no rows get lost. *Time:* 1 h.
-- [ ] **2.5 Commit + update docs** (README data section, first notes in QUALITY_FINDINGS). *Time:* 20 min.
+- [x] **2.1 Notebook `01_explore_311.ipynb`.** Habit for THIS and every notebook: first cell prints `sys.version` and `pd.__version__` (self-documenting provenance). Then load the CSV (use `pd.read_csv(..., low_memory=False)`); print shape, date min/max, missing % per column, top 30 complaint types, borough counts, duplicated `Unique Key` count. Run `ydata_profiling.ProfileReport(df.sample(100000))` and save the HTML into `docs/`. *Why:* the profiling report is a show-piece for "what tools do you use?". *Watch out:* compute missing % on the FULL data, not just the sample. *Time:* 2–3 h.
+- [x] **2.2 Notebook `02_explore_weather.ipynb`.** Load weather CSV; plot TMAX/TMIN/PRCP/SNOW over time; **sanity-check units** (NYC TMAX ≈ −15…40 °C — if you see 250, it's tenths!); list missing days by comparing against a full calendar (`pd.date_range`). *Time:* 1 h.
+- [x] **2.3 Write the data dictionaries.** In `docs/data_dictionary_311.md` (only the ~10 columns you actually use, one line each: name, type, unit, meaning, example, missing-behavior) and same for weather. *Why:* this answers the exam's "How do you describe the dataset?" — it's structural metadata. *Time:* 1 h.
+- [x] **2.4 Build the category mapping table.** Create `data/complaint_category_map.csv` with two columns (`raw_type`, `category`): map the top complaint types to ~8–10 groups (HEAT, NOISE, FLOODING, SNOW_ICE, STREET, SANITATION, PARKING, …) and everything else to OTHER. Commit it. *Why:* this is your self-made **controlled vocabulary** — one of the best things you can show. *Watch out:* always keep an OTHER bucket so no rows get lost. *Time:* 1 h.
+- [x] **2.5 Commit + update docs** (README data section, first notes in QUALITY_FINDINGS). *Time:* 20 min.
 
 ---
 
