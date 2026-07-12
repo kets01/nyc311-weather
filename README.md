@@ -98,4 +98,22 @@ Remote: https://github.com/kets01/nyc311-weather
 
 ## Future work
 
-(filled in during Phase 5 — analysis)
+Ideas surfaced during `05_analysis.ipynb` but deliberately not pursued — analysis has a hard time
+limit for this exam, so these are documented instead of chased:
+
+- **Disaggregate `NOISE` into indoor vs. outdoor sub-types** before testing H4. The aggregated
+  category (which bundles residential, street, commercial, vehicle, park, and helicopter noise)
+  showed no significant correlation with TMAX (r = 0.086, p = 0.35) — but residential noise is
+  ~58% of that category and is plausibly weather-independent, which could be diluting a real
+  outdoor-specific signal. Re-running H4 on just `Noise - Street/Sidewalk` / `Noise - Park` /
+  `Noise - Vehicle` would be a cleaner test.
+- **Sub-daily / lagged join.** The biggest single FLOODING day (2025-07-31, 543 reports) had only
+  modest same-day rain (8.1 mm), and the 2025-07-14 storm's complaint volume spilled into the next
+  calendar day. A join on "rain in the last 24–36 hours" rather than same-calendar-day PRCP would
+  likely sharpen the H1 relationship.
+- **Fill the March–June gap.** This project deliberately used a winter+summer subset for contrast;
+  a full-year download would allow spring/fall as a natural intermediate check on the seasonality
+  confound, beyond the single winter-only re-check already done for H2.
+- **Borough-level analysis**, joining the representativeness finding from `QUALITY_FINDINGS.md`
+  (Bronx complaints/capita roughly double Staten Island's) with weather — out of scope here since
+  the project uses a single citywide weather station.
