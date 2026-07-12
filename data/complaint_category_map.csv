@@ -1,0 +1,181 @@
+raw_type,category
+APPLIANCE,BUILDING
+Asbestos,BUILDING
+BEST/Site Safety,BUILDING
+Boilers,BUILDING
+Building Condition,BUILDING
+Building Drinking Water Tank,BUILDING
+Building/Use,BUILDING
+Construction Lead Dust,BUILDING
+Cooling Tower,BUILDING
+Cranes and Derricks,BUILDING
+DOOR/WINDOW,BUILDING
+Day Care,BUILDING
+Drinking Water,BUILDING
+ELECTRIC,BUILDING
+ELEVATOR,BUILDING
+Electrical,BUILDING
+Elevator,BUILDING
+FLOORING/STAIRS,BUILDING
+GENERAL,BUILDING
+General Construction/Plumbing,BUILDING
+Lead,BUILDING
+Maintenance or Facility,BUILDING
+Mold,BUILDING
+OUTSIDE BUILDING,BUILDING
+PAINT/PLASTER,BUILDING
+PLUMBING,BUILDING
+Plumbing,BUILDING
+Public Toilet,BUILDING
+SAFETY,BUILDING
+Scaffold Safety,BUILDING
+School Maintenance,BUILDING
+UNSANITARY CONDITION,BUILDING
+WATER LEAK,BUILDING
+Water Conservation,BUILDING
+Water Quality,BUILDING
+Water System,BUILDING
+Window Guard,BUILDING
+Indoor Sewage,FLOODING
+Sewer,FLOODING
+Standing Water,FLOODING
+HEAT/HOT WATER,HEAT
+Non-Residential Heat,HEAT
+Noise,NOISE
+Noise - Commercial,NOISE
+Noise - Helicopter,NOISE
+Noise - House of Worship,NOISE
+Noise - Park,NOISE
+Noise - Residential,NOISE
+Noise - Street/Sidewalk,NOISE
+Noise - Vehicle,NOISE
+AHV Inspection Unit,OTHER
+Air Quality,OTHER
+Animal Facility - No Permit,OTHER
+Animal in a Park,OTHER
+Animal-Abuse,OTHER
+Beach/Pool/Sauna Complaint,OTHER
+Bench,OTHER
+Bike/Roller/Skate Chronic,OTHER
+Borough Office,OTHER
+Bus Stop Shelter Complaint,OTHER
+Bus Stop Shelter Placement,OTHER
+Calorie Labeling,OTHER
+Consumer Complaint,OTHER
+DSNY Internal,OTHER
+Dept of Investigations,OTHER
+E-Scooter,OTHER
+Emergency Response Team (ERT),OTHER
+FHV Licensee Complaint,OTHER
+Ferry Complaint,OTHER
+Ferry Inquiry,OTHER
+Food Establishment,OTHER
+Food Poisoning,OTHER
+For Hire Vehicle Complaint,OTHER
+For Hire Vehicle Report,OTHER
+Found Property,OTHER
+Graffiti,OTHER
+Green Taxi Complaint,OTHER
+Green Taxi Report,OTHER
+Harboring Bees/Wasps,OTHER
+Hazardous Materials,OTHER
+Illegal Animal Kept as Pet,OTHER
+Illegal Animal Sold,OTHER
+Illegal Fireworks,OTHER
+Incorrect Data,OTHER
+Indoor Air Quality,OTHER
+Lifeguard,OTHER
+LinkNYC,OTHER
+Lost Property,OTHER
+Mobile Food Vendor,OTHER
+Mosquitoes,OTHER
+Oil or Gas Spill,OTHER
+Outdoor Dining,OTHER
+Pet Sale,OTHER
+Pet Shop,OTHER
+Plant,OTHER
+Poison Ivy,OTHER
+Posting Advertisement,OTHER
+Public Payphone Complaint,OTHER
+Radioactive Material,OTHER
+Real Time Enforcement,OTHER
+SNW,OTHER
+Special Natural Area District (SNAD),OTHER
+Special Projects Inspection Team (SPIT),OTHER
+Tattooing,OTHER
+Taxi Complaint,OTHER
+Taxi Compliment,OTHER
+Taxi Licensee Complaint,OTHER
+Taxi Report,OTHER
+Tobacco or Non-Tobacco Sale,OTHER
+Unleashed Dog,OTHER
+Unspecified,OTHER
+Vendor Enforcement,OTHER
+Violation of Park Rules,OTHER
+Wayfinding,OTHER
+Wood Pile Remaining,OTHER
+X-Ray Machine/Equipment,OTHER
+Abandoned Bike,PARKING
+Abandoned Vehicle,PARKING
+Bike Rack,PARKING
+Blocked Driveway,PARKING
+Broken Parking Meter,PARKING
+Derelict Vehicles,PARKING
+Illegal Parking,PARKING
+Municipal Parking Facility,PARKING
+Commercial Disposal Complaint,SANITATION
+Dead Animal,SANITATION
+Dirty Condition,SANITATION
+Dumpster Complaint,SANITATION
+Illegal Dumping,SANITATION
+Industrial Waste,SANITATION
+Institution Disposal Complaint,SANITATION
+Litter Basket Complaint,SANITATION
+Litter Basket Request,SANITATION
+Missed Collection,SANITATION
+Recycling Basket Complaint,SANITATION
+Residential Disposal Complaint,SANITATION
+Rodent,SANITATION
+Sanitation Worker or Vehicle Complaint,SANITATION
+Transfer Station Complaint,SANITATION
+Unsanitary Animal Facility,SANITATION
+Unsanitary Animal Pvt Property,SANITATION
+Unsanitary Pigeon Condition,SANITATION
+Snow or Ice,SNOW_ICE
+Disorderly Youth,SOCIAL
+Drinking,SOCIAL
+Drug Activity,SOCIAL
+Encampment,SOCIAL
+Homeless Person Assistance,SOCIAL
+Illegal Posting,SOCIAL
+Investigations and Discipline (IAD),SOCIAL
+Non-Emergency Police Matter,SOCIAL
+Panhandling,SOCIAL
+Smoking or Vaping,SOCIAL
+Urinating in Public,SOCIAL
+Bridge Condition,STREET
+Curb Condition,STREET
+DEP Highway Condition,STREET
+DEP Street Condition,STREET
+Damaged Tree,STREET
+Dead/Dying Tree,STREET
+Highway Condition,STREET
+Highway Sign - Damaged,STREET
+Highway Sign - Dangling,STREET
+Highway Sign - Missing,STREET
+Illegal Tree Damage,STREET
+Lot Condition,STREET
+New Tree Request,STREET
+Obstruction,STREET
+Overgrown Tree/Branches,STREET
+Root/Sewer/Sidewalk Condition,STREET
+Sidewalk Condition,STREET
+Street Condition,STREET
+Street Light Condition,STREET
+Street Sign - Damaged,STREET
+Street Sign - Dangling,STREET
+Street Sign - Missing,STREET
+Street Sweeping Complaint,STREET
+Traffic,STREET
+Traffic Signal Condition,STREET
+Uprooted Stump,STREET

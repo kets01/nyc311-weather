@@ -18,6 +18,19 @@ laptop). Both datasets are downloaded directly from their APIs by `notebooks/00_
 the query URL is code, so acquisition itself is reproducible. Each fetch is additionally logged in
 `data/DOWNLOAD_LOG.md` (URL, date, size, row count), because both sources revise data retroactively.
 
+**At a glance (from `01_explore_311.ipynb` / `02_explore_weather.ipynb`, both descriptive-only —
+see `docs/QUALITY_FINDINGS.md` for the full quality assessment):**
+- 311: 1,223,457 rows combined (603,544 winter + 619,913 summer), 0 exact duplicate `unique_key`s,
+  180 distinct raw `complaint_type` values mapped onto a ~10-value controlled vocabulary
+  (`data/complaint_category_map.csv`, 5.7% falls into `OTHER`).
+- 311 missingness: `descriptor` 2.60%, `closed_date` 1.49% (expected for open cases), `latitude`/
+  `longitude` 1.34%, `incident_zip` 0.78%; `borough` has 811 rows (0.07%) holding the placeholder
+  `Unspecified` rather than a real NaN.
+- Weather: 243/243 calendar days present (2025-01-01..2025-08-31), 0% missing values, TMAX range
+  −7.1..37.2 °C confirms `units=metric` was honored.
+- Full data dictionaries: [docs/data_dictionary_311.md](docs/data_dictionary_311.md),
+  [docs/data_dictionary_weather.md](docs/data_dictionary_weather.md).
+
 ## Folder structure
 
 ```
