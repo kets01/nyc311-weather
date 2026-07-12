@@ -48,7 +48,7 @@ folded into the "legitimate" bucket.
 Weather is fully complete in this window: 243/243 expected calendar days present, 0% missing
 values in any of the 6 columns.
 
-**Screenshot:** `figures/fig_02_missingno_matrix.png` (missingno matrix, 50,000-row sample —
+**Screenshot:** `figures/fig_05_missingno_matrix.png` (missingno matrix, 50,000-row sample —
 sampled purely for plot readability; all percentages above are computed on the full data).
 
 ## Consistency
@@ -94,7 +94,7 @@ daily-summary values can be corrected retroactively after initial publication, s
 2026-07-12" applies to the weather file as much as to the 311 file — a re-download today would not
 be expected to reproduce these exact numbers.
 
-**Figure:** `figures/fig_03_case_duration_hist.png` (closed-case duration histogram, capped at 30
+**Figure:** `figures/fig_06_case_duration_hist.png` (closed-case duration histogram, capped at 30
 days for readability).
 
 ## Uniqueness

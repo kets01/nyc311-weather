@@ -120,10 +120,10 @@ All in **`04_integrate.ipynb`**, with a printed row count after every step ("pro
 
 All in **`05_analysis.ipynb`**.
 
-- [ ] **5.1 Basics.** Requests per day over time; category totals; weekday effect (one bar chart).
-- [ ] **5.2 The 4 figures** (see CONTEXT §10): time series (requests + TMAX), heat-vs-TMIN scatter, flooding-vs-PRCP scatter, Spearman correlation heatmap. Titles, axis labels with units, readable font; save as `figures/fig_01_….png` (300 dpi). *Watch out:* 4 figures max — more analysis costs you exam points elsewhere.
-- [ ] **5.3 Interpret in 5 sentences.** One verdict per hypothesis H1–H4, association-language only, seasonality caveat included. Bonus: heat-complaint correlation within winter months only.
-- [ ] **5.4 STOP.** Commit, write further ideas into the README under "Future work", and move on. *Time for the phase:* 3–4 h.
+- [x] **5.1 Basics.** Requests per day over time; category totals; weekday effect (one bar chart).
+- [x] **5.2 The 4 figures** (see CONTEXT §10): time series (requests + TMAX), heat-vs-TMIN scatter, flooding-vs-PRCP scatter, Spearman correlation heatmap. Titles, axis labels with units, readable font; save as `figures/fig_01_….png` (300 dpi). *Watch out:* 4 figures max — more analysis costs you exam points elsewhere.
+- [x] **5.3 Interpret in 5 sentences.** One verdict per hypothesis H1–H4, association-language only, seasonality caveat included. Bonus: heat-complaint correlation within winter months only.
+- [x] **5.4 STOP.** Commit, write further ideas into the README under "Future work", and move on. *Time for the phase:* 3–4 h.
 
 ---
 
