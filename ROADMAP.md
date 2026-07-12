@@ -108,11 +108,11 @@ All in **`03_quality.ipynb`**, one section per dimension, every finding as a NUM
 
 All in **`04_integrate.ipynb`**, with a printed row count after every step ("provenance by print statement").
 
-- [ ] **4.1 Clean 311.** Parse dates (`errors='coerce'`, count failures) → drop exact duplicates (count) → normalize complaint type text → merge the mapping table (assert 0 unmapped) → extract `date` column. Save `data/processed/311_clean.csv`. *Watch out:* every dropped row must be counted — no silent deletions.
-- [ ] **4.2 Clean weather.** Parse dates; fix/verify units (document the conversion if any); keep TMAX/TMIN/PRCP/SNOW; reindex on the full calendar so missing days are visible NaNs. Save `data/processed/weather_clean.csv`.
-- [ ] **4.3 Aggregate + join.** `groupby(['date','category']).size()` → LEFT JOIN weather on `date` → add `weekday`/`is_weekend`. Save `data/processed/analysis_daily.csv`. *Watch out:* aggregate FIRST, then join (otherwise you blow up the table); LEFT (not inner) join so days without weather stay visible.
-- [ ] **4.4 Validate the join (don't skip!).** Checks in the notebook: row count unchanged by the join; `n_requests` sum == cleaned event count; % days with complete weather; one spot check on an extreme-weather day. *Why:* "how did you validate the integration?" is a near-certain exam question — you'll have cells to show.
-- [ ] **4.5 Data dictionary for the joined table** (add a short section to the docs) + commit + backup. *Time for the phase:* ~5 h.
+- [x] **4.1 Clean 311.** Parse dates (`errors='coerce'`, count failures) → drop exact duplicates (count) → normalize complaint type text → merge the mapping table (assert 0 unmapped) → extract `date` column. Save `data/processed/311_clean.csv`. *Watch out:* every dropped row must be counted — no silent deletions.
+- [x] **4.2 Clean weather.** Parse dates; fix/verify units (document the conversion if any); keep TMAX/TMIN/PRCP/SNOW; reindex on the full calendar so missing days are visible NaNs. Save `data/processed/weather_clean.csv`.
+- [x] **4.3 Aggregate + join.** `groupby(['date','category']).size()` → LEFT JOIN weather on `date` → add `weekday`/`is_weekend`. Save `data/processed/analysis_daily.csv`. *Watch out:* aggregate FIRST, then join (otherwise you blow up the table); LEFT (not inner) join so days without weather stay visible.
+- [x] **4.4 Validate the join (don't skip!).** Checks in the notebook: row count unchanged by the join; `n_requests` sum == cleaned event count; % days with complete weather; one spot check on an extreme-weather day. *Why:* "how did you validate the integration?" is a near-certain exam question — you'll have cells to show.
+- [x] **4.5 Data dictionary for the joined table** (add a short section to the docs) + commit + backup. *Time for the phase:* ~5 h.
 
 ---
 
