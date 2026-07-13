@@ -95,12 +95,26 @@ checklist, kept ticked off phase by phase), three data dictionaries (311, weathe
 
 ## Licenses
 
-**Inbound:** NYC Open Data Terms of Use (311) and US public domain (NOAA) — both permit reuse; see
-README.md's sources table for links. **Outbound:** made concrete in this repo, not just planned —
-a root-level `LICENSE` file (MIT) now covers the code (notebooks, scripts); documentation and the
-derived tables in `data/processed/` are declared CC BY 4.0 (noted in `LICENSE` and here, since
-GitHub has no clean second-license mechanism for a mixed repo). The original source data keeps its
-own inbound license regardless of how the derived tables are licensed.
+**Inbound, verified precisely rather than described loosely:**
+- **NYC 311:** not a conventional license — a legal mandate under **Local Law 11 of 2012** (NYC
+  Administrative Code § 23-502(d)), which requires the city to publish datasets "without
+  restriction or licensing requirements": no registration, no license, no usage restriction.
+  Practically equivalent to public domain — no attribution legally required.
+- **NOAA weather:** US federal government works aren't copyrightable domestically
+  (17 U.S.C. § 105) and are automatically public domain; NCEI's own stated policy formally applies
+  **CC0 1.0 Universal Public Domain Dedication** to its federally-produced holdings.
+
+Both sources are therefore **effectively CC0-equivalent** — no share-alike, no required
+attribution, no restriction on relicensing derived work however I choose.
+
+**Outbound:** made concrete in this repo, not just planned — a root-level `LICENSE` file (MIT) now
+covers the code (notebooks, scripts); documentation and the derived tables in `data/processed/`
+are declared CC BY 4.0 (noted in `LICENSE` and here, since GitHub has no clean second-license
+mechanism for a mixed repo). Because the inbound sources impose no constraint, choosing
+attribution-required CC BY 4.0 over CC0 for my own outputs is a scholarly-norm choice, not a legal
+necessity — worth being explicit about, since it would be easy to (wrongly) imply the inbound
+licenses required it. The original source data keeps its own inbound status regardless of how the
+derived tables are licensed.
 
 ## Ethics & privacy
 
@@ -127,10 +141,24 @@ displays:
 
 ## Security
 
-Laptop disk encryption confirmed on (user-verified 2026-07-13). Nothing sensitive committed to
-Git — `.gitignore` keeps the raw record-level data (with its coordinate fields) out of the
-repository entirely; what is committed is either aggregated or, for the notebooks, operates on
-data that stays local.
+Worth being precise here rather than reciting standard boilerplate: **disk encryption doesn't
+actually protect much in this specific project.** Both source datasets are fully public (see
+Licenses above) — anyone can re-run the exact API calls in `00_download.ipynb` and get the same
+data, no login required. If this laptop were stolen, someone reading `data/raw/` would learn
+nothing they couldn't already pull from `data.cityofnewyork.us` or NCEI themselves. So disk
+encryption (confirmed on, user-verified 2026-07-13) is general laptop hygiene, not a load-bearing
+control for this project's actual privacy risk.
+
+The control that *is* doing real work is the aggregation-before-display rule in Ethics & privacy
+above: the risk was never "someone reads my raw CSV" (already public, already legally available to
+them), it's "I publish a derived product — a scatter plot, a table — that makes re-identifying a
+complainant's home *practically easy* in a way a 1.2-million-row government CSV, technically
+public but practically obscure, does not." That distinction is what the Phase 6 privacy check was
+actually checking for, and it's the one place a real issue was found and fixed.
+
+Separately, and unrelated to the data's own confidentiality: nothing sensitive (credentials, API
+keys) is committed to Git, and `.gitignore` keeps the large raw files out of the repository — for
+size and provenance-snapshot reasons (see Version control), not because they needed hiding.
 
 ## Preservation
 

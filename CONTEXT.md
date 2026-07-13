@@ -59,7 +59,7 @@
 |---|---|
 | Source | NYC Open Data portal, dataset "311 Service Requests from 2010 to Present" (ID: `erm2-nwe9`) |
 | Publisher | City of New York (NYC Open Data / NYC 311) |
-| License | NYC Open Data Terms of Use — free to use and redistribute |
+| License | Local Law 11 of 2012 (NYC Admin Code § 23-502(d)) — mandates publication without restriction, registration, or license; effectively public-domain-equivalent, no attribution legally required |
 | Format | CSV via the **Socrata SODA API** (the portal's programmatic interface; no key needed for this dataset) |
 | How I get it | One URL per time window, called from `00_download.ipynb` with `pd.read_csv(url)`: `https://data.cityofnewyork.us/resource/erm2-nwe9.csv?$where=created_date between '2025-01-01T00:00:00' and '2025-02-28T23:59:59'&$limit=1000000&$order=created_date` — the filter runs on NYC's servers, so I only download my subset. I save the result to `data/raw/` and log URL + date + row count. |
 | Size | Full dataset ~40M rows — that's why I only take a **subset** (e.g., a few 2025 months with contrasting weather, like Jan–Feb + Jul–Aug). The exam sheet explicitly allows subsets. |
@@ -74,7 +74,7 @@
 |---|---|
 | Source | NOAA **NCEI Access API** (no token needed), station **NY City Central Park (USW00094728)** — one URL fetched from `00_download.ipynb`: `https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=USW00094728&startDate=2025-01-01&endDate=2025-08-31&dataTypes=TMAX,TMIN,PRCP,SNOW&units=metric&format=csv` |
 | Publisher | NOAA / NCEI (US government) |
-| License | Public domain (US government work) |
+| License | Public domain (17 U.S.C. § 105, US government work); NCEI applies CC0 1.0 Universal Public Domain Dedication to its holdings |
 | Format | CSV |
 | Variables | `TMAX`, `TMIN` (temperature), `PRCP` (precipitation), `SNOW` (snowfall), `DATE` |
 | ⚠️ Units trap | GHCN raw data stores tenths of °C/mm; other downloads use Fahrenheit/inches. My API URL requests **`units=metric` explicitly** — a deliberate, documented choice — and I still sanity-check the values (NYC TMAX should be roughly −15…40 °C). Great exam talking point. |
@@ -151,9 +151,9 @@ For each dimension: what it means → how I check it (pandas one-liners) → wha
 | **Version control** | Git for notebooks, docs, small tables (not for the big raw CSV — listed in `.gitignore`). Commit after every work session with a meaningful message. |
 | **File formats** | CSV (open, long-lived) for data; Markdown for docs; PNG for figures; PDF for the presentation. |
 | **Documentation & metadata** | README + data dictionary + this file; see §7. |
-| **Licenses** | Inbound: NYC open terms + NOAA public domain (both allow reuse). Outbound (if I published): code MIT, data/docs CC BY 4.0. |
-| **Ethics & privacy** | No names in 311, but exact coordinates + time could identify a complainant's home → I only ever *show* daily/borough/category aggregates; record-level location data stays local. |
-| **Security** | Laptop disk encryption; nothing sensitive in Git. |
+| **Licenses** | Inbound: 311 under Local Law 11 of 2012, weather under 17 U.S.C. §105/CC0 — both effectively CC0-equivalent, no attribution required. Outbound (if I published): code MIT, data/docs CC BY 4.0 — my own choice, not one the inbound licenses force. |
+| **Ethics & privacy** | No names in 311, but exact coordinates + time could identify a complainant's home → I only ever *show* daily/borough/category aggregates; record-level location data stays local. This is the control that actually matters (see Security). |
+| **Security** | Laptop disk encryption; nothing sensitive in Git. Honest caveat: since both sources are already public data, encryption isn't protecting a secret here — it's general hygiene, not the thing standing between the data and misuse. The real control is the aggregation-before-display rule above. |
 | **Preservation** | Keep everything ≥ 10 years (German good-scientific-practice rule — DFG) in open formats with checksums. |
 | **Environment (long-term)** | Pinned `requirements.txt` (`pip freeze`) + Python version in the README + versions printed in each notebook's first cell; fresh-install tested. Honest limit: every environment eventually decays — so notebooks are additionally exported to HTML and data kept in CSV, keeping the work *interpretable* even when no longer *runnable*. (Stronger option to name: Docker containers.) |
 | **Publication (described, not executed)** | I *would* deposit the cleaned data + notebooks + docs on **Zenodo**: free, gives a **DOI**, keeps metadata even if a record is retracted, integrates with GitHub. I show the plan (and maybe the filled-out form as a screenshot) instead of a real deposit. |
