@@ -1,0 +1,58 @@
+{
+  "$comment": "DataCite Metadata Schema 4.4 (JSON representation). Machine-readable counterpart of Record 2 in ../METADATA.md.",
+  "identifiers": [
+    { "identifier": "USW00094728", "identifierType": "Local" }
+  ],
+  "alternateIdentifiers": [
+    { "alternateIdentifier": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=USW00094728", "alternateIdentifierType": "URL" }
+  ],
+  "creators": [
+    { "name": "NOAA National Centers for Environmental Information (NCEI)", "nameType": "Organizational" }
+  ],
+  "titles": [
+    { "title": "Daily Summaries — Central Park, NY (Station USW00094728), Jan–Aug 2025" }
+  ],
+  "publisher": "NOAA National Centers for Environmental Information (NCEI)",
+  "publicationYear": 2025,
+  "resourceType": {
+    "resourceTypeGeneral": "Dataset",
+    "resourceType": "Tabular daily observation records"
+  },
+  "subjects": [
+    { "subject": "weather" },
+    { "subject": "climate" },
+    { "subject": "daily summaries" },
+    { "subject": "temperature" },
+    { "subject": "precipitation" },
+    { "subject": "snowfall" }
+  ],
+  "language": "en",
+  "dates": [
+    { "date": "2026-07-12", "dateType": "Collected", "dateInformation": "Snapshot download date used by this project; NOAA corrects observations retroactively" },
+    { "date": "2025-01-01/2025-08-31", "dateType": "Coverage" }
+  ],
+  "geoLocations": [
+    { "geoLocationPlace": "Central Park, Manhattan, New York City, USA" }
+  ],
+  "rightsList": [
+    {
+      "rights": "US federal government work, not copyrightable domestically (17 U.S.C. § 105); NCEI additionally applies CC0 1.0 Universal Public Domain Dedication to its holdings.",
+      "rightsUri": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "$comment": "NCEI's own stated CC0 policy: https://www.ncei.noaa.gov/archive"
+    }
+  ],
+  "descriptions": [
+    {
+      "description": "243 rows (one per calendar day, no gaps), 4 variables retained (TMAX, TMIN, PRCP, SNOW), units=metric requested explicitly. See ../data_dictionary_weather.md for the full column-level schema.",
+      "descriptionType": "Abstract"
+    }
+  ],
+  "relatedIdentifiers": [
+    {
+      "relatedIdentifier": "10.5072/zenodo.562134",
+      "relatedIdentifierType": "DOI",
+      "relationType": "IsSourceOf",
+      "$comment": "Reserved Zenodo Sandbox DOI for this project's derived joined dataset (Record 3 / record_analysis_daily.json), which this source feeds into. Sandbox DOI: does not resolve on real doi.org."
+    }
+  ]
+}
