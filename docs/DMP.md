@@ -133,10 +133,12 @@ raw complaint types → 10 categories, 0 unmapped).
 **Standards:** No biodiversity-specific standard applies to this domain; the analogous role is
 played by **Dublin Core**/**DataCite** fields (title, creator, identifier, license, coverage,
 keywords, date) for describing each dataset, and this project's own data dictionaries in place of a
-formal domain metadata language. **Not yet done** (Phase 7 of the roadmap): writing one short
-DataCite-style descriptive record per dataset explicitly in these terms, and a consistency pass
-confirming the same license names/dates/titles are used identically across README, this DMP, and
-the dictionaries.
+formal domain metadata language. **Done in Phase 7:** one short DataCite-style descriptive record
+per dataset (source 311, source weather, and this project's own derived `analysis_daily.csv`) in
+[docs/METADATA.md](METADATA.md), plus a consistency pass confirming license names/dates/titles
+match across README, this DMP, and the dictionaries — one real mismatch was found and fixed (a
+stale example filename/date left in `CONTEXT.md`'s DMP-topic table; see `docs/METADATA.md`'s
+Consistency note for the specifics).
 
 ## VI. Data restrictions
 

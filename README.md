@@ -33,7 +33,8 @@ see `docs/QUALITY_FINDINGS.md` for the full quality assessment):**
 - Weather: 243/243 calendar days present (2025-01-01..2025-08-31), 0% missing values, TMAX range
   −7.1..37.2 °C confirms `units=metric` was honored.
 - Full data dictionaries: [docs/data_dictionary_311.md](docs/data_dictionary_311.md),
-  [docs/data_dictionary_weather.md](docs/data_dictionary_weather.md).
+  [docs/data_dictionary_weather.md](docs/data_dictionary_weather.md). Descriptive (title/publisher/
+  identifier/license/coverage/keywords) records per dataset: [docs/METADATA.md](docs/METADATA.md).
 
 **Cleaned & joined (`04_integrate.ipynb`, see `docs/QUALITY_FINDINGS.md` for the decisions this
 acts on):** `data/processed/analysis_daily.csv` — one row per (date, category), 1,143 rows,
@@ -71,6 +72,7 @@ nyc311-weather/
 │   └── 05_analysis.ipynb
 ├── docs/
 │   ├── DMP.md
+│   ├── METADATA.md               # descriptive (Dublin Core/DataCite-style) records per dataset
 │   ├── QUALITY_FINDINGS.md
 │   ├── data_dictionary_311.md
 │   ├── data_dictionary_weather.md

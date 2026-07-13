@@ -136,8 +136,8 @@ All in **`05_analysis.ipynb`**.
 
 # PHASE 7 — Metadata (2 h)
 
-- [ ] **7.1 Descriptive records.** In the docs (or README): for each dataset a short standard-style record — title, publisher, identifier, license, coverage, keywords, download date. Mention Dublin Core/DataCite as the standards you're following in spirit.
-- [ ] **7.2 Consistency pass.** Same license names, dates, and titles everywhere (README, DMP, dictionaries). Contradictions between documents look sloppy.
+- [x] **7.1 Descriptive records.** In the docs (or README): for each dataset a short standard-style record — title, publisher, identifier, license, coverage, keywords, download date. Mention Dublin Core/DataCite as the standards you're following in spirit. *Done:* `docs/METADATA.md`, three Dublin Core/DataCite-style records (311 source, weather source, and this project's own derived `analysis_daily.csv`).
+- [x] **7.2 Consistency pass.** Same license names, dates, and titles everywhere (README, DMP, dictionaries). Contradictions between documents look sloppy. *Done:* checked license wording, dataset identifiers, and snapshot date across README/DMP/dictionaries — all matched except one stale example filename/date in `CONTEXT.md`'s DMP-topic table (leftover from before Phase 1 settled on the real naming), now fixed. See `docs/METADATA.md`'s Consistency note.
 
 ---
 
