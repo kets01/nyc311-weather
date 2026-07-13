@@ -28,6 +28,6 @@ download size and are out of scope for this project's research question).
 \* `incident_zip`/`latitude`/`longitude` examples are illustrative round numbers, not one real
 record's actual values — an earlier draft of this table paired a real complaint's exact ZIP with
 its 4-decimal-precision coordinates, which together are precise enough to plausibly identify a
-specific building. Caught and fixed during the Phase 6 privacy check (`docs/DMP.md` §Ethics &
-privacy); every figure/table this project actually *shows* was already aggregated to
+specific building. Caught and fixed during the Phase 6 privacy check (`docs/DMP.md` §VI Data
+restrictions); every figure/table this project actually *shows* was already aggregated to
 day/borough/category, so this was a documentation-only slip, not a data-handling one.

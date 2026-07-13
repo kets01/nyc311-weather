@@ -14,8 +14,8 @@ Full reasoning, hypotheses, limitations, DMP, metadata, provenance and FAIR disc
 | Daily weather, Central Park station `USW00094728` (2025) | [NOAA NCEI Access API](https://www.ncei.noaa.gov/access/services/data/v1) | Public domain (17 U.S.C. § 105, US government work); NCEI applies CC0 1.0 to its holdings |
 
 Both inbound sources are effectively CC0-equivalent — no required attribution, no share-alike, no
-restriction on how derived work is licensed. See [docs/DMP.md](docs/DMP.md) §Licenses for the full
-reasoning and citations.
+restriction on how derived work is licensed. See [docs/DMP.md](docs/DMP.md) §VII Data publishing &
+licensing for the full reasoning and citations.
 
 **Subset chosen:** Jan–Feb 2025 + Jul–Aug 2025 (winter vs. summer contrast, small enough for a
 laptop). Both datasets are downloaded directly from their APIs by `notebooks/00_download.ipynb` —
@@ -107,7 +107,7 @@ Code (notebooks, scripts) is MIT-licensed — see [LICENSE](LICENSE). Documentat
 tables in `data/processed/` are CC BY 4.0 — an attribution-required choice made freely, not one
 required by the inbound sources (both are effectively CC0-equivalent, see Data sources above). The
 original source data keeps its own inbound status regardless. Full reasoning in
-`docs/DMP.md` §Licenses.
+`docs/DMP.md` §VII Data publishing & licensing.
 
 ## Future work
 
