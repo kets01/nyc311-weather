@@ -216,16 +216,39 @@ necessity — worth being explicit about, since it would be easy to (wrongly) im
 licenses required it. The original source data keeps its own inbound status regardless of how the
 derived tables are licensed.
 
-**Where and how (described, not yet executed):** would deposit on **Zenodo**: free, gives a DOI,
-keeps metadata even if a record is retracted, integrates with GitHub. What would be deposited: the
-cleaned/joined data (`data/processed/`, excluding nothing since it's already aggregated to
-day/category — no record-level location data in scope), all notebooks, and the documentation set
-(dictionaries, quality findings, provenance). Licensed CC BY 4.0 (data/docs) / MIT (code), matching
-the licenses already declared in this repo rather than invented fresh at deposit time. Metadata via
-the Zenodo form (DataCite fields): title, authors, description, keywords, related identifiers
-pointing back to the two source datasets (`erm2-nwe9`, station `USW00094728`). No embargo planned —
-data would be made available as soon as the exam materials are finalized. No journal
-data-availability requirement applies (this is a course exam, not a journal submission).
+**Where and how (described, not yet executed as a real deposit):** would deposit on **Zenodo**:
+free, gives a DOI, keeps metadata even if a record is retracted, integrates with GitHub. **Two
+separate deposits, not one bundled upload** — data and software are different citable objects with
+independent versioning (FORCE11 software citation principles: a reader citing the dataset shouldn't
+have to pull in the code repo's commit history, and a reader citing the code shouldn't need to
+re-cite every data update). Concretely:
+
+1. **Software deposit:** all 6 notebooks + `requirements.txt` + `LICENSE` (MIT). In real use this
+   would be automatic via Zenodo's GitHub integration, minting a fresh DOI per tagged GitHub
+   release (e.g. the `v1.0-exam` tag planned for Phase 10.6) — no manual upload needed once that
+   integration is switched on.
+2. **Data deposit:** the cleaned/joined data (`data/processed/`, excluding nothing since it's
+   already aggregated to day/category — no record-level location data in scope) plus the
+   documentation set (dictionaries, `docs/METADATA.md`, quality findings, provenance). Licensed
+   CC BY 4.0, matching the license already declared in this repo. Metadata via the Zenodo form
+   (DataCite fields): title, authors, description, keywords, and a **related identifier pointing at
+   the software deposit's own DOI** (and vice versa) — this is what keeps the two records linked
+   without merging them into one.
+
+Metadata for both records also carries related identifiers pointing back to the two *source*
+datasets (`erm2-nwe9`, station `USW00094728`), separately from the data↔software link above. No
+embargo planned — data would be made available as soon as the exam materials are finalized. No
+journal data-availability requirement applies (this is a course exam, not a journal submission).
+
+**Temporary DOIs (ROADMAP.md Phase 9.2):** reserved — not published — via the
+[Zenodo Sandbox](https://sandbox.zenodo.org) on 2026-07-13, one per deposit, so a real,
+citable-format DOI string exists to write down and discuss without the irreversible step of
+actually publishing. **Explicitly labeled here because it matters: these are Zenodo *Sandbox* DOIs
+— they never resolve on the real `doi.org`, they exist only to demonstrate the reservation
+mechanic, and they are not a real deposit.**
+
+- **Software DOI:** `10.5072/zenodo.562104`
+- **Data DOI:** `10.5072/zenodo.562134`
 
 ## VIII. Data archiving (after the project ends)
 

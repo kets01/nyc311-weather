@@ -152,8 +152,8 @@ All in **`05_analysis.ipynb`**.
 
 # PHASE 9 — Describe the publication plan (1.5–2.5 h, no real deposit)
 
-- [ ] **9.1 Write the plan.** Half a page in the DMP: WHAT would be deposited (cleaned data, notebooks, docs, mapping table — no record-level location data), WHERE (Zenodo — free, DOI, metadata persistence, GitHub integration; alternative: institutional repository), UNDER WHICH licenses (CC BY 4.0 data/docs, MIT code), metadata (DataCite via the Zenodo form). Note explicitly that **data and software get separate DOIs** (see 9.2) — they're different citable objects with independent versioning (FORCE11 software citation principles), not one bundled deposit.
-- [ ] **9.2 Reserve temporary DOIs — one for data, one for software.** Use the [Zenodo Sandbox](https://sandbox.zenodo.org) (recommended for the dry run — sandbox records are clearly marked test-only, so nothing permanent/citable gets created by accident) rather than real Zenodo. Start **two separate** draft uploads and click **"Reserve DOI"** (never "Publish"):
+- [x] **9.1 Write the plan.** Half a page in the DMP: WHAT would be deposited (cleaned data, notebooks, docs, mapping table — no record-level location data), WHERE (Zenodo — free, DOI, metadata persistence, GitHub integration; alternative: institutional repository), UNDER WHICH licenses (CC BY 4.0 data/docs, MIT code), metadata (DataCite via the Zenodo form). Note explicitly that **data and software get separate DOIs** (see 9.2) — they're different citable objects with independent versioning (FORCE11 software citation principles), not one bundled deposit. *Done:* `docs/DMP.md` §VII now describes two separate planned deposits (software: notebooks + requirements.txt + LICENSE; data: `data/processed/` + docs), each with its own DataCite metadata and a related-identifier link to the other.
+- [x] **9.2 Reserve temporary DOIs — one for data, one for software.** ⚠️ Required a real browser session (Zenodo Sandbox login via ORCID/GitHub OAuth, manual form clicks) — done by hand, not something executable from the repo/notebooks, same as the USB backup in 0.5. *Done 2026-07-13:* software `10.5072/zenodo.562104`, data `10.5072/zenodo.562134` — recorded in `docs/DMP.md` §VII and README, explicitly labeled as non-resolving Sandbox DOIs. Use the [Zenodo Sandbox](https://sandbox.zenodo.org) (recommended for the dry run — sandbox records are clearly marked test-only, so nothing permanent/citable gets created by accident) rather than real Zenodo. Start **two separate** draft uploads and click **"Reserve DOI"** (never "Publish"):
   1. **Software** — the code/notebooks. In real life this would be automatic via Zenodo's GitHub integration, minting a fresh DOI per tagged release (e.g. the `v1.0-exam` tag from 10.6); for the dry run, a manual draft upload is enough to get a reserved DOI string.
   2. **Data** — `data/processed/` (cleaned + joined tables) plus the docs (dictionaries, quality findings).
 
@@ -216,7 +216,7 @@ All in **`05_analysis.ipynb`**.
 - [x] QUALITY_FINDINGS has a number for all 8 dimensions + a decision each
 - [x] Join validated (counts reconcile, coverage % known, 1 spot check)
 - [x] DMP complete and TRUE (everything in it actually exists)
-- [ ] Temporary DOIs reserved for data and software separately (§9.2), recorded and clearly labeled "not published"
+- [x] Temporary DOIs reserved for data and software separately (§9.2), recorded and clearly labeled "not published"
 - [x] FAIR table filled honestly; provenance chain diagram exists
 - [ ] requirements.txt current; git history clean; backup fresh — first two true, but USB/external-drive backup (§IV) is still outstanding, so left unchecked as a bundled item
 
