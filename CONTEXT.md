@@ -146,7 +146,7 @@ For each dimension: what it means → how I check it (pandas one-liners) → wha
 | **Data collection** | **API download from a notebook** (`00_download.ipynb`): Socrata SODA API for 311 (server-side date filter), NCEI Access API for weather (`units=metric` explicit). The query URLs live in versioned code → the acquisition itself is reproducible. Each fetch is additionally recorded in `data/DOWNLOAD_LOG.md`: full URL, date, file size, row count (the log matters because both sources revise data — my snapshot is tied to a date). |
 | **Storage** | Project folder on my laptop. **Rule: files in `data/raw/` are never edited** — all changes happen in notebooks and are saved to `data/processed/`. |
 | **Backup** | 3-2-1 rule: laptop + external drive/USB + cloud (e.g., university cloud). I actually copy the folder at each milestone and test once that I can open a restored file. |
-| **Naming** | lowercase, underscores, ISO dates: `311_raw_jan-feb_downloaded_2026-07-15.csv`; notebooks numbered `01_…` to `05_…`. |
+| **Naming** | lowercase, underscores, ISO dates: `311_2025-01_2025-02_downloaded_2026-07-12.csv`; notebooks numbered `01_…` to `05_…`. |
 | **Folder structure** | See ROADMAP.md — small and fixed: data/raw, data/processed, notebooks, docs, figures, presentation. |
 | **Version control** | Git for notebooks, docs, small tables (not for the big raw CSV — listed in `.gitignore`). Commit after every work session with a meaningful message. |
 | **File formats** | CSV (open, long-lived) for data; Markdown for docs; PNG for figures; PDF for the presentation. |
