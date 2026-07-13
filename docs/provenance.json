@@ -1,0 +1,393 @@
+{
+  "$comment": "W3C PROV-JSON (https://www.w3.org/submissions/prov-json/) serialization of this project's pipeline. Human-readable equivalent: docs/FAIR_and_provenance.md.",
+  "prefix": {
+    "ex": "https://github.com/kets01/nyc311-weather#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "entity": {
+    "ex:src_nyc311_portal": {
+      "prov:label": "NYC Open Data portal, dataset erm2-nwe9",
+      "prov:type": "prov:Entity",
+      "prov:location": "https://data.cityofnewyork.us/d/erm2-nwe9"
+    },
+    "ex:src_noaa_portal": {
+      "prov:label": "NOAA NCEI portal, station USW00094728",
+      "prov:type": "prov:Entity",
+      "prov:location": "https://www.ncei.noaa.gov/access/services/data/v1"
+    },
+    "ex:raw_311_jan_feb": {
+      "prov:label": "data/raw/311_2025-01_2025-02_downloaded_2026-07-12.csv",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-12T00:00:00"
+    },
+    "ex:raw_311_jul_aug": {
+      "prov:label": "data/raw/311_2025-07_2025-08_downloaded_2026-07-12.csv",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-12T00:00:00"
+    },
+    "ex:raw_weather": {
+      "prov:label": "data/raw/weather_centralpark_2025_downloaded_2026-07-12.csv",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-12T00:00:00"
+    },
+    "ex:profiling_report_311": {
+      "prov:label": "docs/311_profiling_report.html",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    },
+    "ex:clean_311": {
+      "prov:label": "data/processed/311_clean.csv",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    },
+    "ex:clean_weather": {
+      "prov:label": "data/processed/weather_clean.csv",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    },
+    "ex:joined_analysis_daily": {
+      "prov:label": "data/processed/analysis_daily.csv",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    },
+    "ex:fig_00": {
+      "prov:label": "figures/fig_00_weather_overview.png",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    },
+    "ex:fig_01": {
+      "prov:label": "figures/fig_01_requests_vs_tmax.png",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    },
+    "ex:fig_02": {
+      "prov:label": "figures/fig_02_heat_vs_tmin.png",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    },
+    "ex:fig_03": {
+      "prov:label": "figures/fig_03_flooding_vs_prcp.png",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    },
+    "ex:fig_04": {
+      "prov:label": "figures/fig_04_correlation_heatmap.png",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    },
+    "ex:fig_05": {
+      "prov:label": "figures/fig_05_missingno_matrix.png",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    },
+    "ex:fig_06": {
+      "prov:label": "figures/fig_06_case_duration_hist.png",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    },
+    "ex:fig_07": {
+      "prov:label": "figures/fig_07_provenance_chain.png",
+      "prov:type": "prov:Entity",
+      "prov:generatedAtTime": "2026-07-13T00:00:00"
+    }
+  },
+  "activity": {
+    "ex:act_download": {
+      "prov:label": "notebooks/00_download.ipynb",
+      "prov:type": "prov:Activity"
+    },
+    "ex:act_explore_311": {
+      "prov:label": "notebooks/01_explore_311.ipynb",
+      "prov:type": "prov:Activity"
+    },
+    "ex:act_explore_weather": {
+      "prov:label": "notebooks/02_explore_weather.ipynb",
+      "prov:type": "prov:Activity"
+    },
+    "ex:act_assess_quality": {
+      "prov:label": "notebooks/03_quality.ipynb",
+      "prov:type": "prov:Activity"
+    },
+    "ex:act_integrate": {
+      "prov:label": "notebooks/04_integrate.ipynb",
+      "prov:type": "prov:Activity"
+    },
+    "ex:act_analyze": {
+      "prov:label": "notebooks/05_analysis.ipynb",
+      "prov:type": "prov:Activity"
+    },
+    "ex:act_build_diagram": {
+      "prov:label": "notebooks/build_fig07_provenance_diagram.py",
+      "prov:type": "prov:Activity"
+    }
+  },
+  "agent": {
+    "ex:kemki": {
+      "prov:label": "kemki",
+      "prov:type": "prov:Person"
+    }
+  },
+  "wasGeneratedBy": {
+    "_:wgb1": {
+      "prov:entity": "ex:raw_311_jan_feb",
+      "prov:activity": "ex:act_download"
+    },
+    "_:wgb2": {
+      "prov:entity": "ex:raw_311_jul_aug",
+      "prov:activity": "ex:act_download"
+    },
+    "_:wgb3": {
+      "prov:entity": "ex:raw_weather",
+      "prov:activity": "ex:act_download"
+    },
+    "_:wgb4": {
+      "prov:entity": "ex:profiling_report_311",
+      "prov:activity": "ex:act_explore_311"
+    },
+    "_:wgb5": {
+      "prov:entity": "ex:clean_311",
+      "prov:activity": "ex:act_integrate"
+    },
+    "_:wgb6": {
+      "prov:entity": "ex:clean_weather",
+      "prov:activity": "ex:act_integrate"
+    },
+    "_:wgb7": {
+      "prov:entity": "ex:joined_analysis_daily",
+      "prov:activity": "ex:act_integrate"
+    },
+    "_:wgb8": {
+      "prov:entity": "ex:fig_00",
+      "prov:activity": "ex:act_explore_weather"
+    },
+    "_:wgb9": {
+      "prov:entity": "ex:fig_01",
+      "prov:activity": "ex:act_analyze"
+    },
+    "_:wgb10": {
+      "prov:entity": "ex:fig_02",
+      "prov:activity": "ex:act_analyze"
+    },
+    "_:wgb11": {
+      "prov:entity": "ex:fig_03",
+      "prov:activity": "ex:act_analyze"
+    },
+    "_:wgb12": {
+      "prov:entity": "ex:fig_04",
+      "prov:activity": "ex:act_analyze"
+    },
+    "_:wgb13": {
+      "prov:entity": "ex:fig_05",
+      "prov:activity": "ex:act_assess_quality"
+    },
+    "_:wgb14": {
+      "prov:entity": "ex:fig_06",
+      "prov:activity": "ex:act_assess_quality"
+    },
+    "_:wgb15": {
+      "prov:entity": "ex:fig_07",
+      "prov:activity": "ex:act_build_diagram"
+    }
+  },
+  "used": {
+    "_:u1": {
+      "prov:activity": "ex:act_download",
+      "prov:entity": "ex:src_nyc311_portal"
+    },
+    "_:u2": {
+      "prov:activity": "ex:act_download",
+      "prov:entity": "ex:src_noaa_portal"
+    },
+    "_:u3": {
+      "prov:activity": "ex:act_explore_311",
+      "prov:entity": "ex:raw_311_jan_feb"
+    },
+    "_:u4": {
+      "prov:activity": "ex:act_explore_311",
+      "prov:entity": "ex:raw_311_jul_aug"
+    },
+    "_:u5": {
+      "prov:activity": "ex:act_explore_weather",
+      "prov:entity": "ex:raw_weather"
+    },
+    "_:u6": {
+      "prov:activity": "ex:act_assess_quality",
+      "prov:entity": "ex:raw_311_jan_feb"
+    },
+    "_:u7": {
+      "prov:activity": "ex:act_integrate",
+      "prov:entity": "ex:raw_311_jan_feb"
+    },
+    "_:u8": {
+      "prov:activity": "ex:act_assess_quality",
+      "prov:entity": "ex:raw_311_jul_aug"
+    },
+    "_:u9": {
+      "prov:activity": "ex:act_integrate",
+      "prov:entity": "ex:raw_311_jul_aug"
+    },
+    "_:u10": {
+      "prov:activity": "ex:act_assess_quality",
+      "prov:entity": "ex:raw_weather"
+    },
+    "_:u11": {
+      "prov:activity": "ex:act_integrate",
+      "prov:entity": "ex:raw_weather"
+    },
+    "_:u12": {
+      "prov:activity": "ex:act_analyze",
+      "prov:entity": "ex:joined_analysis_daily"
+    }
+  },
+  "wasDerivedFrom": {
+    "_:wdf1": {
+      "prov:generatedEntity": "ex:raw_311_jan_feb",
+      "prov:usedEntity": "ex:src_nyc311_portal"
+    },
+    "_:wdf2": {
+      "prov:generatedEntity": "ex:raw_311_jul_aug",
+      "prov:usedEntity": "ex:src_nyc311_portal"
+    },
+    "_:wdf3": {
+      "prov:generatedEntity": "ex:raw_weather",
+      "prov:usedEntity": "ex:src_noaa_portal"
+    },
+    "_:wdf4": {
+      "prov:generatedEntity": "ex:clean_311",
+      "prov:usedEntity": "ex:raw_311_jan_feb"
+    },
+    "_:wdf5": {
+      "prov:generatedEntity": "ex:clean_311",
+      "prov:usedEntity": "ex:raw_311_jul_aug"
+    },
+    "_:wdf6": {
+      "prov:generatedEntity": "ex:clean_weather",
+      "prov:usedEntity": "ex:raw_weather"
+    },
+    "_:wdf7": {
+      "prov:generatedEntity": "ex:joined_analysis_daily",
+      "prov:usedEntity": "ex:clean_311"
+    },
+    "_:wdf8": {
+      "prov:generatedEntity": "ex:joined_analysis_daily",
+      "prov:usedEntity": "ex:clean_weather"
+    },
+    "_:wdf9": {
+      "prov:generatedEntity": "ex:fig_00",
+      "prov:usedEntity": "ex:raw_weather"
+    },
+    "_:wdf10": {
+      "prov:generatedEntity": "ex:fig_01",
+      "prov:usedEntity": "ex:joined_analysis_daily"
+    },
+    "_:wdf11": {
+      "prov:generatedEntity": "ex:fig_02",
+      "prov:usedEntity": "ex:joined_analysis_daily"
+    },
+    "_:wdf12": {
+      "prov:generatedEntity": "ex:fig_03",
+      "prov:usedEntity": "ex:joined_analysis_daily"
+    },
+    "_:wdf13": {
+      "prov:generatedEntity": "ex:fig_04",
+      "prov:usedEntity": "ex:joined_analysis_daily"
+    },
+    "_:wdf14": {
+      "prov:generatedEntity": "ex:fig_05",
+      "prov:usedEntity": "ex:raw_311_jan_feb"
+    },
+    "_:wdf15": {
+      "prov:generatedEntity": "ex:fig_05",
+      "prov:usedEntity": "ex:raw_311_jul_aug"
+    },
+    "_:wdf16": {
+      "prov:generatedEntity": "ex:fig_06",
+      "prov:usedEntity": "ex:raw_311_jan_feb"
+    },
+    "_:wdf17": {
+      "prov:generatedEntity": "ex:fig_06",
+      "prov:usedEntity": "ex:raw_311_jul_aug"
+    }
+  },
+  "wasAssociatedWith": {
+    "_:waw1": {
+      "prov:activity": "ex:act_download",
+      "prov:agent": "ex:kemki"
+    },
+    "_:waw2": {
+      "prov:activity": "ex:act_explore_311",
+      "prov:agent": "ex:kemki"
+    },
+    "_:waw3": {
+      "prov:activity": "ex:act_explore_weather",
+      "prov:agent": "ex:kemki"
+    },
+    "_:waw4": {
+      "prov:activity": "ex:act_assess_quality",
+      "prov:agent": "ex:kemki"
+    },
+    "_:waw5": {
+      "prov:activity": "ex:act_integrate",
+      "prov:agent": "ex:kemki"
+    },
+    "_:waw6": {
+      "prov:activity": "ex:act_analyze",
+      "prov:agent": "ex:kemki"
+    },
+    "_:waw7": {
+      "prov:activity": "ex:act_build_diagram",
+      "prov:agent": "ex:kemki"
+    }
+  },
+  "wasAttributedTo": {
+    "_:wat1": {
+      "prov:entity": "ex:profiling_report_311",
+      "prov:agent": "ex:kemki"
+    },
+    "_:wat2": {
+      "prov:entity": "ex:clean_311",
+      "prov:agent": "ex:kemki"
+    },
+    "_:wat3": {
+      "prov:entity": "ex:clean_weather",
+      "prov:agent": "ex:kemki"
+    },
+    "_:wat4": {
+      "prov:entity": "ex:joined_analysis_daily",
+      "prov:agent": "ex:kemki"
+    },
+    "_:wat5": {
+      "prov:entity": "ex:fig_00",
+      "prov:agent": "ex:kemki"
+    },
+    "_:wat6": {
+      "prov:entity": "ex:fig_01",
+      "prov:agent": "ex:kemki"
+    },
+    "_:wat7": {
+      "prov:entity": "ex:fig_02",
+      "prov:agent": "ex:kemki"
+    },
+    "_:wat8": {
+      "prov:entity": "ex:fig_03",
+      "prov:agent": "ex:kemki"
+    },
+    "_:wat9": {
+      "prov:entity": "ex:fig_04",
+      "prov:agent": "ex:kemki"
+    },
+    "_:wat10": {
+      "prov:entity": "ex:fig_05",
+      "prov:agent": "ex:kemki"
+    },
+    "_:wat11": {
+      "prov:entity": "ex:fig_06",
+      "prov:agent": "ex:kemki"
+    },
+    "_:wat12": {
+      "prov:entity": "ex:fig_07",
+      "prov:agent": "ex:kemki"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "$comment": "DataCite Metadata Schema 4.4 (JSON representation). Machine-readable counterpart of Record 3 in ../METADATA.md. Identifier is a real Zenodo Sandbox DOI, reserved (not published) 2026-07-13 per ROADMAP.md Phase 9.2 — it does not resolve on real doi.org.",
+  "identifiers": [
+    { "identifier": "10.5072/zenodo.562134", "identifierType": "DOI" }
+  ],
+  "creators": [
+    { "name": "kemki", "nameType": "Personal" }
+  ],
+  "titles": [
+    { "title": "NYC 311 & Weather (2025) — Daily Request Counts by Category, Joined with Weather" }
+  ],
+  "publisher": "Zenodo Sandbox (test deposit — not a real/published record)",
+  "publicationYear": 2026,
+  "resourceType": {
+    "resourceTypeGeneral": "Dataset",
+    "resourceType": "Tabular daily aggregate, derived"
+  },
+  "subjects": [
+    { "subject": "311" },
+    { "subject": "weather" },
+    { "subject": "New York City" },
+    { "subject": "service requests" },
+    { "subject": "data integration" },
+    { "subject": "association analysis" }
+  ],
+  "language": "en",
+  "dates": [
+    { "date": "2026-07-13", "dateType": "Created", "dateInformation": "Produced by notebooks/04_integrate.ipynb (Phase 4)" }
+  ],
+  "geoLocations": [
+    { "geoLocationPlace": "New York City, USA (citywide; single weather station — see Representativeness in ../QUALITY_FINDINGS.md)" }
+  ],
+  "rightsList": [
+    {
+      "rights": "Creative Commons Attribution 4.0 International — a scholarly-norm choice made freely, not one the inbound sources required (both are CC0-equivalent, see record_311.json / record_weather.json).",
+      "rightsUri": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "descriptions": [
+    {
+      "description": "1,143 rows, one per (date, complaint category); n_requests sums to the full cleaned 311 event count. See ../data_dictionary_analysis_daily.md for the full column-level schema.",
+      "descriptionType": "Abstract"
+    }
+  ],
+  "relatedIdentifiers": [
+    {
+      "relatedIdentifier": "erm2-nwe9",
+      "relatedIdentifierType": "Local",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "USW00094728",
+      "relatedIdentifierType": "Local",
+      "relationType": "IsDerivedFrom"
+    },
+    {
+      "relatedIdentifier": "10.5072/zenodo.562104",
+      "relatedIdentifierType": "DOI",
+      "relationType": "IsSupplementedBy",
+      "$comment": "The companion software deposit (record_software.json) that generated this dataset."
+    }
+  ]
+}

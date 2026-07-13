@@ -138,7 +138,15 @@ per dataset (source 311, source weather, and this project's own derived `analysi
 [docs/METADATA.md](METADATA.md), plus a consistency pass confirming license names/dates/titles
 match across README, this DMP, and the dictionaries — one real mismatch was found and fixed (a
 stale example filename/date left in `CONTEXT.md`'s DMP-topic table; see `docs/METADATA.md`'s
-Consistency note for the specifics).
+Consistency note for the specifics). **Extended 2026-07-13** beyond "in spirit": each record now
+also has an actual machine-readable **DataCite Metadata Schema 4.4 JSON** counterpart in
+[docs/metadata/](metadata/) — explicit identifiers (F3), `rightsUri`-encoded licenses (R1.1), and
+typed `relatedIdentifiers` (I3) — not just Dublin-Core-shaped prose. Provenance got the same
+treatment: [docs/provenance.json](provenance.json) is a real
+[PROV-JSON](https://www.w3.org/submissions/prov-json/) serialization, not only the Markdown table
+in `docs/FAIR_and_provenance.md`. That document's "Machine-readability audit" section has the full
+list of what this closed and what it honestly didn't (the homemade complaint-category vocabulary
+stays homemade; a Sandbox DOI stays unindexed until a real Zenodo deposit happens).
 
 ## VI. Data restrictions
 

@@ -1,0 +1,59 @@
+{
+  "$comment": "DataCite Metadata Schema 4.4 (JSON representation, as used by Zenodo's own deposit API). Machine-readable counterpart of Record 1 in ../METADATA.md.",
+  "identifiers": [
+    { "identifier": "erm2-nwe9", "identifierType": "Local" }
+  ],
+  "alternateIdentifiers": [
+    { "alternateIdentifier": "https://data.cityofnewyork.us/d/erm2-nwe9", "alternateIdentifierType": "URL" },
+    { "alternateIdentifier": "https://data.cityofnewyork.us/resource/erm2-nwe9.csv", "alternateIdentifierType": "URL" }
+  ],
+  "creators": [
+    { "name": "City of New York", "nameType": "Organizational" }
+  ],
+  "titles": [
+    { "title": "NYC 311 Service Requests from 2010 to Present — 2025 subset (Jan–Feb, Jul–Aug)" }
+  ],
+  "publisher": "NYC Open Data",
+  "publicationYear": 2025,
+  "resourceType": {
+    "resourceTypeGeneral": "Dataset",
+    "resourceType": "Tabular event-level service request records"
+  },
+  "subjects": [
+    { "subject": "311" },
+    { "subject": "service requests" },
+    { "subject": "complaints" },
+    { "subject": "municipal government" },
+    { "subject": "urban services" },
+    { "subject": "New York City" }
+  ],
+  "language": "en",
+  "dates": [
+    { "date": "2026-07-12", "dateType": "Collected", "dateInformation": "Snapshot download date used by this project; the source portal itself is continuously updated" },
+    { "date": "2025-01-01/2025-02-28", "dateType": "Coverage" },
+    { "date": "2025-07-01/2025-08-31", "dateType": "Coverage" }
+  ],
+  "geoLocations": [
+    { "geoLocationPlace": "New York City, USA (5 boroughs)" }
+  ],
+  "rightsList": [
+    {
+      "rights": "Local Law 11 of 2012 (NYC Administrative Code § 23-502(d)) — mandated publication without restriction, registration, or license; effectively public-domain-equivalent, no attribution legally required.",
+      "rightsUri": "https://codelibrary.amlegal.com/codes/newyorkcity/latest/NYCadmin/0-0-0-204577"
+    }
+  ],
+  "descriptions": [
+    {
+      "description": "603,544 + 619,913 = 1,223,457 rows; ~12 columns retained via $select out of 43 in the source. See ../data_dictionary_311.md for the full column-level schema.",
+      "descriptionType": "Abstract"
+    }
+  ],
+  "relatedIdentifiers": [
+    {
+      "relatedIdentifier": "10.5072/zenodo.562134",
+      "relatedIdentifierType": "DOI",
+      "relationType": "IsSourceOf",
+      "$comment": "Reserved Zenodo Sandbox DOI for this project's derived joined dataset (Record 3 / record_analysis_daily.json), which this source feeds into. Sandbox DOI: does not resolve on real doi.org."
+    }
+  ]
+}

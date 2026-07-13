@@ -69,10 +69,14 @@ nyc311-weather/
 │   ├── 02_explore_weather.ipynb
 │   ├── 03_quality.ipynb
 │   ├── 04_integrate.ipynb
-│   └── 05_analysis.ipynb
+│   ├── 05_analysis.ipynb
+│   ├── build_fig07_provenance_diagram.py  # generates figures/fig_07 (committed, not one-off)
+│   └── build_provenance_json.py           # generates docs/provenance.json (committed, not one-off)
 ├── docs/
 │   ├── DMP.md
 │   ├── METADATA.md               # descriptive (Dublin Core/DataCite-style) records per dataset
+│   ├── metadata/                 # machine-readable counterparts: DataCite JSON, one per record
+│   ├── provenance.json            # machine-readable provenance: W3C PROV-JSON
 │   ├── QUALITY_FINDINGS.md
 │   ├── data_dictionary_311.md
 │   ├── data_dictionary_weather.md

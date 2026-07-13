@@ -25,7 +25,7 @@ notebook number — see `docs/DMP.md` §III Naming for why):
 | `fig_04_correlation_heatmap.png` | `05_analysis.ipynb` |
 | `fig_05_missingno_matrix.png` | `03_quality.ipynb` |
 | `fig_06_case_duration_hist.png` | `03_quality.ipynb` |
-| `fig_07_provenance_chain.png` | a one-off script (`_build_provenance_diagram.py`, deleted after use — same pattern as the notebooks were originally built), **not** a numbered analysis notebook. Honest distinction: this figure documents the *pipeline*, it isn't an output *of* the pipeline, so it doesn't get an entry in the six numbered notebooks. |
+| `fig_07_provenance_chain.png` | `notebooks/build_fig07_provenance_diagram.py` — **not** a numbered analysis notebook (this figure documents the *pipeline*, it isn't an output *of* the pipeline, so it doesn't get an entry in the six numbered notebooks), but a permanently committed script, not a one-off. Correction from the first pass of this document: the script was originally deleted after use, mirroring the throwaway `_build_NN_*.py` scripts used to scaffold the notebooks themselves — but unlike those, this figure has no other code that reproduces it, so deleting the script quietly broke this project's own reproducibility claim for exactly one figure. Caught during a 2026-07-13 audit (see addendum below) and fixed by recommitting the script under a name (no leading underscore) that signals it's meant to stay. |
 
 **How Git contributes:** the commit history shows who changed what, when, and why, for notebooks,
 docs, and the mapping table — one feature branch per phase since Phase 3 (see `docs/DMP.md` §III),
@@ -37,9 +37,15 @@ execution order. Discipline rule, and verified rather than just claimed (see Rep
 below): **"Restart & Run All" before committing**, so outputs are never stale relative to the code
 that (supposedly) produced them.
 
-**W3C PROV framing** (concept only, not a formal implementation): data files are *entities*,
-notebook/script steps are *activities*, and the single *agent* throughout is kemki. The diagram
-below traces this chain for the project's central figure:
+**W3C PROV framing:** data files are *entities*, notebook/script steps are *activities*, and the
+single *agent* throughout is kemki. Originally concept-only (a diagram, not a formal
+implementation) — as of the 2026-07-13 audit below, this is now backed by an actual
+**[PROV-JSON](https://www.w3.org/submissions/prov-json/) serialization**,
+[`docs/provenance.json`](provenance.json): 17 entities (2 source portals, 3 raw files, 3 processed
+tables, 8 figures, 1 profiling report), 7 activities (one per notebook/script), 1 agent, and the
+`wasGeneratedBy`/`used`/`wasDerivedFrom`/`wasAssociatedWith`/`wasAttributedTo` relations connecting
+them — machine-parseable, not just a human-readable table and a picture. The diagram below traces
+one chain from that same structure, for the project's central figure:
 
 **Provenance chain diagram** for `figures/fig_01_requests_vs_tmax.png` (the H1 figure — daily
 request counts vs. TMAX):
@@ -86,6 +92,26 @@ rot-proof layer named in `docs/DMP.md` §VIII: pinned `requirements.txt` keeps t
 years — the HTML export keeps the executed analysis (code + real outputs, not just code) readable
 indefinitely, independent of whether Python 3.11 and this exact package set still exist.
 
+## Machine-readability audit (addendum, 2026-07-13)
+
+Prompted by exam Q&A prep, not part of the original roadmap: a first pass of this document
+described FAIR compliance largely in terms of human-readable Markdown — accurate about *what facts
+exist*, but not rigorous about whether those facts were in a form a machine could actually act on.
+Six specific questions exposed real gaps, fixed where fixable rather than just re-described:
+
+| Question | Was true before this addendum? | Fixed by |
+|---|---|---|
+| Does every metadata record carry the identifier of the data it describes (F3)? | Partially — Record 3's identifier field was stale ("not yet minted") even after Phase 9 had already reserved a real DOI | Backfilled in `docs/METADATA.md` + `docs/metadata/record_analysis_daily.json` |
+| Is the metadata itself machine-readable? | No — Markdown tables only | Added `docs/metadata/*.json`, DataCite Metadata Schema 4.4 JSON, one file per record |
+| Are cross-references between resources qualified and machine-readable? | No — prose ("joined with Record 2…") | `relatedIdentifiers` with explicit `relationType` (`IsDerivedFrom`, `IsSourceOf`, `IsSupplementTo`, …) in the JSON records |
+| Is the license URL-encoded (a resolvable `rightsUri`, not just a name)? | No | Added for CC BY 4.0, CC0 1.0, and MIT (canonical URIs exist); Local Law 11 links to its codified statute text instead, since it has no CC-style license URI — that's a real, structural difference, not an oversight |
+| Is provenance in a standard, machine-readable schema? | No — Markdown table + PNG only | Added `docs/provenance.json`, a real [PROV-JSON](https://www.w3.org/submissions/prov-json/) serialization (17 entities, 7 activities, 1 agent, 5 relation types) |
+| Is there committed code to generate *every* figure? | No — `fig_07`'s generating script had been deleted after use | Recommitted as `notebooks/build_fig07_provenance_diagram.py` |
+
+The four DataCite JSON records also picked up a fourth entry, `record_software.json` — the software
+deposit had a reserved DOI (Phase 9.2) but no descriptive record of its own until this pass, which
+was itself an instance of the first gap above.
+
 ## FAIR self-assessment
 
 Key point to lead with: **FAIR ≠ open.** Both source datasets are already open (public, no
@@ -93,16 +119,19 @@ restriction), but "open" says nothing about whether data is findable via a persi
 retrievable by machines, described in a shared vocabulary, or reusable with clear provenance — that
 gap is exactly what this table checks. Assessed honestly rather than all-green — an admitted gap is
 more credible than a claimed clean sweep (the same principle already applied to the Phase 6 privacy
-check in `docs/DMP.md` §VI).
+check in `docs/DMP.md` §VI). Updated 2026-07-13 to reflect the machine-readability audit above —
+several rows improved, none went fully green across the board, because the audit fixed specific
+sub-gaps without pretending the deeper ones (a real, indexed DOI; a shared complaint-category
+vocabulary) went away.
 
 🟢 good · 🟡 partial / planned fix · 🔴 real, currently-unaddressed gap
 
 | Principle | What it demands | Status now | Publication plan |
 |---|---|---|---|
-| **Findable** | Persistent identifier + rich metadata + indexed in a searchable resource | 🟡 **Sources**: findable via their own portal/station identifiers (`erm2-nwe9`, `USW00094728`), rich metadata exists in `docs/METADATA.md`. **This project's own outputs** (derived table, notebooks): no persistent identifier — only a GitHub URL, findable by link, not indexed anywhere a stranger would search | Zenodo deposit (`docs/DMP.md` §VII) → real DOI, indexed by Zenodo's own search and DataCite; **ROADMAP.md Phase 9.2** currently only has *reserved, sandbox* (temporary, non-resolving) DOIs, explicitly not real ones yet |
+| **Findable** | Persistent identifier + rich metadata + indexed in a searchable resource | 🟡 **Sources**: findable via their own portal/station identifiers (`erm2-nwe9`, `USW00094728`), rich metadata in `docs/METADATA.md` + machine-readable `docs/metadata/*.json` (F1–F3 now genuinely satisfied: each record carries an explicit `identifiers` block). **This project's own outputs**: F1 now met by the two reserved Sandbox DOIs (`10.5072/zenodo.562104` software, `.562134` data); **F4 still fails** — Sandbox records are explicitly not indexed anywhere a stranger would search, which is the whole point of them being sandbox | Real Zenodo deposit (`docs/DMP.md` §VII) → the same DOIs become real and indexed by Zenodo's own search and DataCite; nothing else needs to change, since the metadata is already structured correctly |
 | **Accessible** | Retrievable via a standard, open protocol; metadata survives even if the data is later removed | 🟢 **Sources**: HTTPS, no authentication, no login. 🟡 **This project's own output**: retrievable via HTTPS (GitHub) today, but if the repo were deleted, the metadata would vanish with it — no independent record | Zenodo = HTTPS access, and critically **A2**: if a Zenodo record is ever withdrawn, the metadata stays resolvable at the DOI — unlike a deleted GitHub repo, where everything disappears at once |
-| **Interoperable** | Open, shared formal language for (meta)data; vocabularies that themselves follow FAIR; qualified references to other (meta)data | 🟢 CSV, ISO 8601 dates, standard lat/long — consistent throughout, verified in Phase 3. 🔴 **`data/complaint_category_map.csv` is a homemade vocabulary**, not an external/shared one — flagged here rather than hidden, since it's the clearest weak spot in this whole assessment | Publishing the mapping table + data dictionaries *alongside* the data narrows the gap (a reader can see exactly how the vocabulary was built) but doesn't close it — a homemade vocabulary stays homemade even once published; a real fix would mean mapping onto an existing municipal-311 taxonomy if one existed |
-| **Reusable** | Clear, accessible usage license; detailed provenance; meets domain-relevant community standards | 🟢 Licenses precisely cited, not just named (`docs/DMP.md` §VII: Local Law 11 / CC0 inbound, MIT / CC BY 4.0 outbound). 🟢 Provenance now detailed (this document + `data/DOWNLOAD_LOG.md`). 🟡 "Community standards" is a weak fit — there's no single established cross-domain standard for a municipal-311 + climate combination; CSV + explicit data dictionaries are the closest practical equivalent, not a formal one | Same licenses carried into the Zenodo record; `docs/METADATA.md`'s DataCite-style records + the mapping table give a future reuser everything a formal standard would, just not badged as one |
+| **Interoperable** | Open, shared formal language for (meta)data; vocabularies that themselves follow FAIR; qualified references to other (meta)data | 🟢 CSV, ISO 8601 dates, standard lat/long for the *data* — consistent throughout, verified in Phase 3. 🟢 I1 and I3 now genuinely met for the *metadata*: `docs/metadata/*.json` is a formal, shared schema (DataCite), and `relatedIdentifiers`/`relationType` are real qualified links, not prose. 🔴 **`data/complaint_category_map.csv` is still a homemade vocabulary** (I2) — machine-readable metadata doesn't touch this gap at all, flagged here rather than hidden, since it's the clearest weak spot left in this whole assessment | A real fix would mean mapping onto an existing municipal-311 taxonomy if one existed; publishing the mapping table narrows the *documentation* gap but a homemade vocabulary stays homemade |
+| **Reusable** | Clear, accessible usage license; detailed provenance; meets domain-relevant community standards | 🟢 Licenses precisely cited *and* now URL-encoded as real `rightsUri` values for CC BY 4.0/CC0/MIT (`docs/DMP.md` §VII, `docs/metadata/*.json`); Local Law 11 links to its statute text instead, honestly noted as not a CC-style URI. 🟢 Provenance now both human-readable (this document) and machine-readable (`docs/provenance.json`, PROV-JSON). 🟡 "Community standards" is still a weak fit — there's no single established cross-domain standard for a municipal-311 + climate combination; CSV + explicit data dictionaries + DataCite JSON are the closest practical equivalent, not a formal domain standard | Same licenses and provenance carried into the real Zenodo record — this row needs no further work beyond the deposit itself |
 
 **How this would be shown in the exam:** this table as a slide, traffic-light colors kept, gaps
 named out loud (temporary DOI only, homemade vocabulary, no formal community standard) rather than
