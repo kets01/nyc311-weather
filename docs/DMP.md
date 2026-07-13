@@ -1,46 +1,176 @@
 # Data Management Plan
 
-> Filled in phase by phase as work progresses (Phase 6 finalizes it). Replace every plan with what
-> was *actually done*. See CONTEXT.md §6 for the full reasoning behind each answer.
+> Filled in phase by phase as work progressed; finalized in Phase 6. Every entry below is what was
+> *actually done*, not the original plan — see CONTEXT.md §6 for the plan this replaces. Written
+> as of 2026-07-13, after Phases 0–5.
 
 ## Roles
 
+One-person project, but the roles are named because they'd be separate people on a real team:
+**researcher** (research question, hypotheses, analysis), **data steward** (quality assessment,
+metadata, controlled vocabulary), **archivist** (backups, version control, preservation). All
+three hats worn by the same person (kemki) throughout.
+
 ## Data collection
 
+Both datasets are downloaded directly from their APIs by `notebooks/00_download.ipynb`: the
+Socrata SODA API for NYC 311 (dataset `erm2-nwe9`, server-side `$where` date filter + `$select`
+column list) and the NOAA NCEI Access API for weather (`daily-summaries`, station `USW00094728`,
+`units=metric` requested explicitly). The query URLs are versioned code, so the *acquisition* is
+reproducible. `data/DOWNLOAD_LOG.md` additionally records the exact URL, download date
+(2026-07-12), file size, row count, and a SHA-256 checksum for each of the 3 raw files — because
+both sources revise data retroactively, the notebook reproduces the *query* but the log pins down
+the *snapshot*.
+
+Real snag hit and documented: the first 311 download requested all 43 source columns and the
+winter window failed mid-transfer (`IncompleteRead` after ~140 MB). Fixed by adding `$select` to
+request only the ~12 columns this project actually uses — smaller, faster, and a deliberate,
+documented design choice rather than an accident (see `00_download.ipynb` §1).
+
 ## Storage
+
+Project folder on laptop (`nyc311-weather/`, structure below). Rule: **files in `data/raw/` are
+never edited** — verified concretely on 2026-07-13 by re-computing SHA-256 checksums for all 3 raw
+files and confirming they still match the values logged in `DOWNLOAD_LOG.md` on the download date,
+after 5 phases of downstream work. All cleaning/joining happens in notebooks and is saved to
+`data/processed/`.
 
 ## Backup
 
 3-2-1 rule: 3 copies, 2 media, 1 off-site.
-1. **Laptop** — this working copy (`C:\Users\kemki\Documents\master\MSD\Exam\nyc311-weather`).
+1. **Laptop** — this working copy.
 2. **Cloud / off-site** — GitHub remote `https://github.com/kets01/nyc311-weather.git`, set up
-   2026-07-12 and pushed after the Phase 0 commit. Covers code, docs, and notebooks (not the raw
-   data — `data/raw/` is gitignored, see below).
-3. **External drive/USB** — still TODO. Because `data/raw/` is excluded from Git (it's the one
-   thing GitHub doesn't back up), a periodic manual copy of the whole project folder to a USB/
-   external drive is the plan to cover the raw CSVs. To do before Phase 10's final checklist;
-   restore-tested by opening one copied file.
+   2026-07-12 and pushed after every phase since. Covers code, docs, and notebooks — not the raw
+   311/weather data (`data/raw/`, gitignored) or the large intermediate `data/processed/311_clean.csv`
+   (~248 MB, gitignored — see Version control).
+3. **External drive/USB** — still outstanding. Because `data/raw/` and the large processed file are
+   excluded from Git, a manual copy of the whole project folder to a USB/external drive is the
+   plan to cover them. **Residual risk**, tracked here and in Risks below; to close out before
+   Phase 10's final checklist, restore-tested by opening one copied file.
 
 ## Naming
 
+Lowercase, underscores, ISO dates throughout — confirmed in practice, not just planned:
+`311_2025-01_2025-02_downloaded_2026-07-12.csv`, `weather_centralpark_2025_downloaded_2026-07-12.csv`,
+notebooks numbered `00_download.ipynb` … `05_analysis.ipynb`, figures `fig_00_…png` … `fig_06_…png`
+(the two-digit prefix is a global sequential figure count across the project, not tied 1:1 to
+notebook number — kept consistent after a Phase 5 renumbering fixed a collision between two
+notebooks that had both used `fig_02`/`fig_03`).
+
 ## Folder structure
+
+Matches the tree in ROADMAP.md exactly: `data/{raw,processed}`, `notebooks/`, `docs/`, `figures/`,
+`presentation/` (not yet populated — Phase 10), plus `DOWNLOAD_LOG.md` and
+`complaint_category_map.csv` under `data/`.
 
 ## Version control
 
+Git, GitHub remote as above. **Workflow note:** Phases 0–2 were committed directly to `main`;
+starting Phase 3, switched to one feature branch per phase (`phase-N-name`, merged with `--no-ff`
+into `main` once the phase's notebooks run clean and docs are updated) — a deliberate correction
+made partway through, not the original plan. `git log --oneline --graph` shows both eras honestly
+rather than being rewritten to look consistent.
+
+Two files are gitignored despite being generated by the notebooks: `data/raw/` (large, and the
+point is that it's a frozen, checksummed snapshot rather than something Git needs to diff) and
+`data/processed/311_clean.csv` specifically (~248 MB — discovered in practice to exceed GitHub's
+100 MB hard per-file limit; it's fully regenerable from the raw files + `04_integrate.ipynb`, so
+losing Git history for it costs nothing). The small, actually analysis-ready
+`data/processed/weather_clean.csv` and `analysis_daily.csv` are committed normally.
+
 ## File formats
+
+CSV (raw and processed data — open, long-lived), Markdown (all docs), Jupyter notebooks (`.ipynb`,
+to be additionally exported to HTML in Phase 8 as a rot-proof layer), PNG at 300 dpi (figures),
+PDF (final presentation — Phase 10, not yet produced).
 
 ## Documentation & metadata
 
+`README.md` (overview, sources, folder guide, at-a-glance numbers), `CONTEXT.md` (full reasoning:
+research question, hypotheses, limitations, quality plan, FAIR), `ROADMAP.md` (execution
+checklist, kept ticked off phase by phase), three data dictionaries (311, weather, the joined
+`analysis_daily` table), `docs/QUALITY_FINDINGS.md` (all 8 quality dimensions with numbers),
+`data/DOWNLOAD_LOG.md` (provenance/snapshot record), `data/complaint_category_map.csv`
+(self-made controlled vocabulary, 180 raw complaint types → 10 categories, 0 unmapped).
+
 ## Licenses
+
+**Inbound:** NYC Open Data Terms of Use (311) and US public domain (NOAA) — both permit reuse; see
+README.md's sources table for links. **Outbound:** made concrete in this repo, not just planned —
+a root-level `LICENSE` file (MIT) now covers the code (notebooks, scripts); documentation and the
+derived tables in `data/processed/` are declared CC BY 4.0 (noted in `LICENSE` and here, since
+GitHub has no clean second-license mechanism for a mixed repo). The original source data keeps its
+own inbound license regardless of how the derived tables are licensed.
 
 ## Ethics & privacy
 
+No names appear in the 311 data, but exact coordinates + timestamp could plausibly re-identify a
+complainant's home, so the standing rule is: only ever *show* aggregates (day/borough/category),
+keep record-level location data local.
+
+**Phase 6 privacy check performed on 2026-07-13** — reviewed every artifact this project actually
+displays:
+- All 7 figures (`figures/fig_00…fig_06`) are aggregate: time series/scatter/heatmap of daily
+  counts and weather, a missingness pattern (no values shown), a duration histogram. None plot
+  individual coordinates or addresses.
+- `docs/311_profiling_report.html` was generated with `minimal=True`; confirmed by inspecting the
+  HTML that it has only "Overview" and "Variables" sections — no "Sample"/"Duplicate rows" table
+  of raw records, and no individual lat/long values (grepped for coordinate-like numbers; the only
+  matches were CSS layout percentages and internal chart-rendering SVG path coordinates, not data).
+- **Found and fixed one real issue:** `docs/data_dictionary_311.md`'s example row had reused one
+  real complaint's exact ZIP + 4-decimal-precision latitude/longitude together — precise enough to
+  plausibly identify a specific building. Replaced with illustrative rounded values decoupled from
+  any single real record (see the dictionary's footnote). This was a documentation-only slip —
+  no notebook, saved table, or figure ever displayed or exported record-level coordinates — but
+  it's reported here rather than quietly fixed, since catching your own mistake and saying so is
+  worth more than claiming a clean check on the first pass.
+
 ## Security
+
+Laptop disk encryption confirmed on (user-verified 2026-07-13). Nothing sensitive committed to
+Git — `.gitignore` keeps the raw record-level data (with its coordinate fields) out of the
+repository entirely; what is committed is either aggregated or, for the notebooks, operates on
+data that stays local.
 
 ## Preservation
 
+Target: keep everything ≥ 10 years (DFG good-scientific-practice guideline), in open formats
+(CSV, Markdown, PNG) with fixity checksums. Currently have: SHA-256 checksums for the 3 raw files
+in `DOWNLOAD_LOG.md`, re-verified unchanged as of this phase. Still to do (Phase 8): export all
+notebooks to HTML — the plan is for the work to stay *interpretable* even once the pinned
+environment eventually stops being *runnable*.
+
 ## Environment (long-term)
+
+`requirements.txt` pinned via `pip freeze` (135 packages); Python 3.11.9 noted in `README.md`;
+every notebook's first cell prints `sys.version` and `pd.__version__` (self-documenting
+provenance, confirmed present in all 6 notebooks). **Fresh-install tested on 2026-07-13:** created
+a new venv from scratch, ran `pip install -r requirements.txt` with no errors, and confirmed every
+project dependency (pandas, matplotlib, seaborn, missingno, ydata-profiling, holidays,
+jupyter_core, requests, scipy) imports cleanly. Honest limit, stated up front rather than
+discovered later: no environment is guaranteed to keep working over a 10-year horizon — pinned
+versions cover the medium term, Docker would extend it further (not done here), and the HTML
+export planned for Phase 8 is what actually carries the 10-year requirement, independent of
+whether the code still runs.
 
 ## Publication (described, not executed)
 
+Would deposit on **Zenodo**: free, gives a DOI, keeps metadata even if a record is retracted,
+integrates with GitHub. What would be deposited: the cleaned/joined data (`data/processed/`,
+excluding nothing since it's already aggregated to day/category — no record-level location data
+in scope), all notebooks, and the documentation set (dictionaries, quality findings, provenance).
+Licensed CC BY 4.0 (data/docs) / MIT (code), matching the licenses already declared in this repo
+(see Licenses above) rather than invented fresh at deposit time. Metadata via the Zenodo form
+(DataCite fields): title, authors, description, keywords, related identifiers pointing back to the
+two source datasets (`erm2-nwe9`, station `USW00094728`).
+
 ## Risks
+
+- **Laptop dies:** mitigated by the GitHub remote (code/docs/notebooks); **not yet mitigated** for
+  the raw data snapshot, which only exists on this laptop until the USB backup (see Backup) is
+  actually done — the single clearest open risk in this plan.
+- **Source portal changes data:** mitigated — raw snapshot is frozen, checksummed, and dated;
+  "data as of 2026-07-12" is stated wherever the data is used.
+- **Time runs out:** the exam sheet's own escape valve — analysis (Phase 5) was kept to a hard
+  time limit and 4 figures by design, specifically so that Phases 3/6/8 (quality, DMP, FAIR/
+  provenance) would not be the ones cut if time got tight.
