@@ -112,6 +112,15 @@ required by the inbound sources (both are effectively CC0-equivalent, see Data s
 original source data keeps its own inbound status regardless. Full reasoning in
 `docs/DMP.md` §VII Data publishing & licensing.
 
+**Planned publication (not executed):** two separate Zenodo deposits — software (this repo) and
+data (`data/processed/` + docs) — each with its own DOI, cross-linked via DataCite related
+identifiers. Temporary DOIs reserved (not published) via the Zenodo Sandbox on 2026-07-13 — these
+are sandbox-only, non-resolving identifiers, not a real deposit:
+- Software DOI: `10.5072/zenodo.562104`
+- Data DOI: `10.5072/zenodo.562134`
+
+See `docs/DMP.md` §VII for the full plan.
+
 ## Future work
 
 Ideas surfaced during `05_analysis.ipynb` but deliberately not pursued — analysis has a hard time
