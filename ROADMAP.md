@@ -150,10 +150,23 @@ All in **`05_analysis.ipynb`**.
 
 ---
 
-# PHASE 9 — Describe the publication plan (1–2 h, no real deposit)
+# PHASE 9 — Describe the publication plan (1.5–2.5 h, no real deposit)
 
-- [ ] **9.1 Write the plan.** Half a page in the DMP: WHAT would be deposited (cleaned data, notebooks, docs, mapping table — no record-level location data), WHERE (Zenodo — free, DOI, metadata persistence, GitHub integration; alternative: institutional repository), UNDER WHICH licenses (CC BY 4.0 data/docs, MIT code), metadata (DataCite via the Zenodo form).
-- [ ] **9.2 Optional 15-min bonus:** open zenodo.org, click "New upload", fill the form fields (don't submit), screenshot it for a backup slide. Shows you've actually seen the process.
+- [ ] **9.1 Write the plan.** Half a page in the DMP: WHAT would be deposited (cleaned data, notebooks, docs, mapping table — no record-level location data), WHERE (Zenodo — free, DOI, metadata persistence, GitHub integration; alternative: institutional repository), UNDER WHICH licenses (CC BY 4.0 data/docs, MIT code), metadata (DataCite via the Zenodo form). Note explicitly that **data and software get separate DOIs** (see 9.2) — they're different citable objects with independent versioning (FORCE11 software citation principles), not one bundled deposit.
+- [ ] **9.2 Reserve temporary DOIs — one for data, one for software.** Use the [Zenodo Sandbox](https://sandbox.zenodo.org) (recommended for the dry run — sandbox records are clearly marked test-only, so nothing permanent/citable gets created by accident) rather than real Zenodo. Start **two separate** draft uploads and click **"Reserve DOI"** (never "Publish"):
+  1. **Software** — the code/notebooks. In real life this would be automatic via Zenodo's GitHub integration, minting a fresh DOI per tagged release (e.g. the `v1.0-exam` tag from 10.6); for the dry run, a manual draft upload is enough to get a reserved DOI string.
+  2. **Data** — `data/processed/` (cleaned + joined tables) plus the docs (dictionaries, quality findings).
+
+  Record both reserved (unpublished) DOI strings in `docs/DMP.md` §VII and the README, labeled
+  "reserved via Zenodo Sandbox, not a real/published deposit" so nobody mistakes them for citable
+  identifiers. *Why:* a reserved DOI is a real, valid identifier you can already write down and
+  discuss — without the irreversible step of actually publishing (a published Zenodo record can't
+  be deleted, only superseded by a new version). Two DOIs rather than one because a reader citing
+  just the dataset shouldn't have to pull in the code repo's version history, and vice versa — this
+  is the same logic behind giving notebooks and processed tables separate entries in the data
+  dictionaries. *Time:* 20–25 min. *Watch out:* sandbox DOIs never resolve on the real `doi.org` —
+  say so explicitly wherever they're written down.
+- [ ] **9.3 Optional 15-min bonus:** fill in the rest of the upload form fields (title, authors, description, keywords) without submitting, screenshot it for a backup slide. Shows you've actually seen the full process, not just the DOI button.
 
 ---
 
@@ -203,6 +216,7 @@ All in **`05_analysis.ipynb`**.
 - [ ] QUALITY_FINDINGS has a number for all 8 dimensions + a decision each
 - [ ] Join validated (counts reconcile, coverage % known, 1 spot check)
 - [ ] DMP complete and TRUE (everything in it actually exists)
+- [ ] Temporary DOIs reserved for data and software separately (§9.2), recorded and clearly labeled "not published"
 - [ ] FAIR table filled honestly; provenance chain diagram exists
 - [ ] requirements.txt current; git history clean; backup fresh
 
