@@ -230,11 +230,13 @@ data-availability requirement applies (this is a course exam, not a journal subm
 ## VIII. Data archiving (after the project ends)
 
 **Target:** keep everything ≥ 10 years (DFG good-scientific-practice guideline), in open formats
-(CSV, Markdown, PNG) with fixity checksums. Currently have: SHA-256 checksums for the 3 raw files
-in `DOWNLOAD_LOG.md`, re-verified unchanged as of this phase. Still to do (Phase 8): export all
-notebooks to HTML — the plan is for the work to stay *interpretable* even once the pinned
-environment eventually stops being *runnable*. DOI/long-term repository placement is the Zenodo
-deposit described in §VII, not yet executed.
+(CSV, Markdown, PNG) with fixity checksums. Have: SHA-256 checksums for the 3 raw files in
+`DOWNLOAD_LOG.md`, re-verified unchanged as of this phase; and, done in Phase 8, all 6 notebooks
+exported to static HTML (`jupyter nbconvert --to html`, saved to `docs/notebooks_html/`, 2.6 MB
+total) — so the work stays *interpretable* even once the pinned environment eventually stops being
+*runnable*. Full reasoning and the reproducibility test that preceded the export:
+`docs/FAIR_and_provenance.md`. DOI/long-term repository placement is the Zenodo deposit described
+in §VII, not yet executed.
 
 **Environment, so the data stays usable, not just stored:** `requirements.txt` pinned via `pip
 freeze` (135 packages); Python 3.11.9 noted in `README.md`; every notebook's first cell prints

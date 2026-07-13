@@ -77,8 +77,9 @@ nyc311-weather/
 │   ├── data_dictionary_311.md
 │   ├── data_dictionary_weather.md
 │   ├── data_dictionary_analysis_daily.md
-│   └── FAIR_and_provenance.md
-├── figures/                        # exported plots (fig_01_....png)
+│   ├── FAIR_and_provenance.md
+│   └── notebooks_html/            # notebooks exported to static HTML (Phase 8 preservation layer)
+├── figures/                        # exported plots (fig_00_....png … fig_07_provenance_chain.png)
 └── presentation/                   # slides source + final PDF
 ```
 

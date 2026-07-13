@@ -143,10 +143,10 @@ All in **`05_analysis.ipynb`**.
 
 # PHASE 8 — Provenance & FAIR write-up (½ day)
 
-- [ ] **8.1 Fill `docs/FAIR_and_provenance.md` — provenance part.** Table: stage → what was recorded → where (download log / notebooks / requirements.txt / git log). Draw one small "portal → raw CSV → clean CSV → joined table → figure 2" chain diagram (any tool, export PNG) for your best figure. *Time:* 1.5 h.
-- [ ] **8.2 Mini reproducibility test.** Restart & Run All on all six notebooks in order (for 00_download, re-running fetches a fresh snapshot — run it against a NEW filename or skip it and note that raw snapshots are frozen by design) — everything must run clean top to bottom. Fix anything that breaks. *Why:* "could you reproduce this?" — now the honest answer is "yes, and I tested it." *Time:* 1 h.
-- [ ] **8.2b Export the executed notebooks to HTML.** `jupyter nbconvert --to html notebooks/*.ipynb` → save into `docs/`. *Why:* your rot-proof preservation layer — environments decay, but HTML stays readable in 10+ years; someone in 2040 can *read* your analysis even if they can't *run* it. One command, big exam point. *Time:* 10 min.
-- [ ] **8.3 FAIR self-assessment.** Fill the F/A/I/R table from CONTEXT §9 with YOUR status (traffic lights: what's already good, what the Zenodo plan would fix, what stays a gap — e.g., homemade category vocabulary). *Watch out:* don't grade yourself all-green; honest gaps are more credible. *Time:* 1 h.
+- [x] **8.1 Fill `docs/FAIR_and_provenance.md` — provenance part.** Table: stage → what was recorded → where (download log / notebooks / requirements.txt / git log). Draw one small "portal → raw CSV → clean CSV → joined table → figure 2" chain diagram (any tool, export PNG) for your best figure. *Time:* 1.5 h. *Done:* provenance table + figure→notebook mapping table filled with real specifics; chain diagram for `fig_01_requests_vs_tmax.png` built (matplotlib, one-off script, deleted after use) and saved as `figures/fig_07_provenance_chain.png`.
+- [x] **8.2 Mini reproducibility test.** Restart & Run All on all six notebooks in order (for 00_download, re-running fetches a fresh snapshot — run it against a NEW filename or skip it and note that raw snapshots are frozen by design) — everything must run clean top to bottom. Fix anything that breaks. *Why:* "could you reproduce this?" — now the honest answer is "yes, and I tested it." *Time:* 1 h. *Done:* notebooks `01`–`05` re-executed clean, zero errors; `00_download` deliberately skipped (documented why in `docs/FAIR_and_provenance.md`); `git diff` confirmed `data/processed/` and `figures/` came back byte-identical — the pipeline is verified deterministic, not just non-crashing.
+- [x] **8.2b Export the executed notebooks to HTML.** `jupyter nbconvert --to html notebooks/*.ipynb` → save into `docs/`. *Why:* your rot-proof preservation layer — environments decay, but HTML stays readable in 10+ years; someone in 2040 can *read* your analysis even if they can't *run* it. One command, big exam point. *Time:* 10 min. *Done:* all 6 notebooks exported to `docs/notebooks_html/` (2.6 MB total).
+- [x] **8.3 FAIR self-assessment.** Fill the F/A/I/R table from CONTEXT §9 with YOUR status (traffic lights: what's already good, what the Zenodo plan would fix, what stays a gap — e.g., homemade category vocabulary). *Watch out:* don't grade yourself all-green; honest gaps are more credible. *Time:* 1 h. *Done:* filled with 🟢/🟡/🔴 status per principle; real, currently-unaddressed gaps named (temporary/sandbox-only DOI, homemade complaint-category vocabulary, no formal cross-domain community standard) rather than smoothed over.
 
 ---
 
@@ -211,14 +211,14 @@ All in **`05_analysis.ipynb`**.
 # Final checklists
 
 ### Before building slides
-- [ ] All notebooks pass "Restart & Run All" (00_download exempt — see 8.2)
-- [ ] Raw files untouched; DOWNLOAD_LOG complete (full API URL, date, size, rows); query URLs in 00_download.ipynb committed
-- [ ] QUALITY_FINDINGS has a number for all 8 dimensions + a decision each
-- [ ] Join validated (counts reconcile, coverage % known, 1 spot check)
-- [ ] DMP complete and TRUE (everything in it actually exists)
+- [x] All notebooks pass "Restart & Run All" (00_download exempt — see 8.2)
+- [x] Raw files untouched; DOWNLOAD_LOG complete (full API URL, date, size, rows); query URLs in 00_download.ipynb committed
+- [x] QUALITY_FINDINGS has a number for all 8 dimensions + a decision each
+- [x] Join validated (counts reconcile, coverage % known, 1 spot check)
+- [x] DMP complete and TRUE (everything in it actually exists)
 - [ ] Temporary DOIs reserved for data and software separately (§9.2), recorded and clearly labeled "not published"
-- [ ] FAIR table filled honestly; provenance chain diagram exists
-- [ ] requirements.txt current; git history clean; backup fresh
+- [x] FAIR table filled honestly; provenance chain diagram exists
+- [ ] requirements.txt current; git history clean; backup fresh — first two true, but USB/external-drive backup (§IV) is still outstanding, so left unchecked as a bundled item
 
 ### Presentation
 - [ ] Every exam requirement has a slide (question, DMP, quality+tools, description, analysis, provenance, preservation/FAIR)
