@@ -129,8 +129,8 @@ All in **`05_analysis.ipynb`**.
 
 # PHASE 6 — Finish the DMP (½ day)
 
-- [ ] **6.1 Fill `docs/DMP.md`** using the table in CONTEXT §6 — but replace every plan with what you *actually did* (backup tested on <date>, download log exists, raw untouched, etc.). Publication section stays future tense: "I would deposit on Zenodo because …". *Why:* concrete beats generic; the examiner may ask "show me". *Time:* 2 h.
-- [ ] **6.2 Privacy check.** Confirm no figure/table you'll show contains addresses or exact coordinates — everything aggregated to day/borough/category. Note the check in the DMP. *Time:* 15 min.
+- [x] **6.1 Fill `docs/DMP.md`** using the table in CONTEXT §6 — but replace every plan with what you *actually did* (backup tested on <date>, download log exists, raw untouched, etc.). Publication section stays future tense: "I would deposit on Zenodo because …". *Why:* concrete beats generic; the examiner may ask "show me". *Time:* 2 h.
+- [x] **6.2 Privacy check.** Confirm no figure/table you'll show contains addresses or exact coordinates — everything aggregated to day/borough/category. Note the check in the DMP. *Time:* 15 min.
 
 ---
 

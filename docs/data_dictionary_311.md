@@ -16,11 +16,18 @@ subset (1,223,457 rows), computed in `notebooks/01_explore_311.ipynb`.
 | `complaint_type` | string (free-standing category) | — | Raw complaint category (180 distinct values in this subset) | `Noise - Residential` | 0% missing; mapped to a ~10-value controlled vocabulary via `data/complaint_category_map.csv` |
 | `descriptor` | string | — | Sub-category detail for the complaint type | `Loud Music/Party` | 2.60% missing |
 | `borough` | string | — | NYC borough | `BRONX` | 0% missing as NaN, but 811 rows (0.07%) hold the placeholder value `Unspecified` — a disguised missing value, flagged in Phase 3 |
-| `incident_zip` | float (should be 5-digit code) | — | ZIP code of the incident | `10466.0` | 0.78% missing; validity (5-digit format, plausible NYC range) checked in Phase 3 |
-| `latitude` | float | decimal degrees | Incident latitude | `40.8919` | 1.34% missing; range-checked against the NYC bounding box in Phase 3 |
-| `longitude` | float | decimal degrees | Incident longitude | `-73.8602` | 1.34% missing; range-checked against the NYC bounding box in Phase 3 |
+| `incident_zip` | float (should be 5-digit code) | — | ZIP code of the incident | `10001.0`* | 0.78% missing; validity (5-digit format, plausible NYC range) checked in Phase 3 |
+| `latitude` | float | decimal degrees | Incident latitude | `40.75`* | 1.34% missing; range-checked against the NYC bounding box in Phase 3 |
+| `longitude` | float | decimal degrees | Incident longitude | `-73.99`* | 1.34% missing; range-checked against the NYC bounding box in Phase 3 |
 | `status` | string (enum) | — | Request status | `Closed`, `Open`, `In Progress`, `Pending`, `Assigned`, `Started`, `Unspecified` | 0% missing |
 
 **Not requested from the source** (43 columns total; the 31 not listed above — e.g. `location_type`,
 `community_board`, `bbl`, `vehicle_type` — were dropped at the API level via `$select` to reduce
 download size and are out of scope for this project's research question).
+
+\* `incident_zip`/`latitude`/`longitude` examples are illustrative round numbers, not one real
+record's actual values — an earlier draft of this table paired a real complaint's exact ZIP with
+its 4-decimal-precision coordinates, which together are precise enough to plausibly identify a
+specific building. Caught and fixed during the Phase 6 privacy check (`docs/DMP.md` §Ethics &
+privacy); every figure/table this project actually *shows* was already aggregated to
+day/borough/category, so this was a documentation-only slip, not a data-handling one.

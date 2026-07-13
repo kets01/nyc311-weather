@@ -50,6 +50,7 @@ nyc311-weather/
 ├── README.md                     # this file
 ├── requirements.txt               # pinned packages (pip freeze)
 ├── .gitignore                     # ignores data/raw/, venv, checkpoints
+├── LICENSE                        # MIT (code); docs/data are CC BY 4.0, see docs/DMP.md
 ├── CONTEXT.md                     # full project reference: RQ, DMP, quality plan, FAIR, glossary
 ├── ROADMAP.md                     # step-by-step execution plan / checklist
 ├── data/
@@ -95,6 +96,13 @@ external drive/USB (still to do, covers `data/raw/` which is gitignored). See `d
 the concrete, dated record of when copies were made and restore-tested.
 
 Remote: https://github.com/kets01/nyc311-weather
+
+## License
+
+Code (notebooks, scripts) is MIT-licensed — see [LICENSE](LICENSE). Documentation and the derived
+tables in `data/processed/` are CC BY 4.0. The original source data keeps its own inbound license
+regardless (NYC Open Data Terms of Use / US public domain — see Data sources above). Full
+reasoning in `docs/DMP.md` §Licenses.
 
 ## Future work
 
