@@ -116,7 +116,7 @@ stack-data==0.6.3
 statsmodels==0.14.6
 terminado==0.18.1
 tinycss2==1.5.1
-tornado==6.5.7
+tornado==6.5.9
 tqdm==4.68.4
 traitlets==5.15.1
 typeguard==4.5.2
